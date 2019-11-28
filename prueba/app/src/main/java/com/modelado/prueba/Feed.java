@@ -31,16 +31,14 @@ public class Feed extends AppCompatActivity {
 
     }
 
-    /* Abre una nueva actividad para los comentarios*/
+    /** Abre una nueva actividad para los comentarios*/
     public void comentar(View view){
         Intent intent = new Intent(this, comentarios.class);
         startActivity(intent);
     }
 
-    /* Llena el feed mediante la api */
+    /** Llena el feed mediante la api */
     public void llenaFeed(){
-        perros = new LinkedList<>();
-
         String[][] dos_mil_perros = api.feed("961b6dd3ede3cb8ecbaacbd68de040cd78eb2ed5889130cceb4c49268ea4d506");
         for (int i = 0; i < 2000; i++) {
             perros.add(new Perro(R.drawable.uno,dos_mil_perros[i][1],Integer.parseInt(dos_mil_perros[i][2]), Integer.parseInt(dos_mil_perros[i][3])));
@@ -48,7 +46,4 @@ public class Feed extends AppCompatActivity {
     }
 
     /* El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
-
-
-
 }
