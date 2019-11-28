@@ -1,33 +1,18 @@
 package com.modelado.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.modelado.apicall.ApiCall;
-import com.squareup.picasso.Picasso;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
+    private ApiCall api = new ApiCall(this);
     private LinkedList<Perro> perros;
 
     @Override
@@ -55,11 +40,11 @@ public class Feed extends AppCompatActivity {
     /* Llena el feed mediante la api */
     public void llenaFeed(){
         perros = new LinkedList<>();
-        perros.add(new Perro(R.drawable.uno,"Athan_Ervin",5, 76281));
-        perros.add(new Perro(R.drawable.dos,"Alfonse_Barrett", 10, 47042));
-        perros.add(new Perro(R.drawable.tres, "Zackery_Maverick", 6,41630));
-        perros.add(new Perro(R.drawable.cuatro, "Max Wilbur", 79, 85653));
-        perros.add(new Perro(R.drawable.cinco, "asdfghjklñqwertyuiopzxcvbnm", 95,36133));
+
+        String[][] dos_mil_perros = api.feed("961b6dd3ede3cb8ecbaacbd68de040cd78eb2ed5889130cceb4c49268ea4d506");
+        for (int i = 0; i < 2000; i++) {
+            perros.add(new Perro(R.drawable.uno,dos_mil_perros[i][1],Integer.parseInt(dos_mil_perros[i][2]), Integer.parseInt(dos_mil_perros[i][3])));
+        }
     }
 
     /* El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
