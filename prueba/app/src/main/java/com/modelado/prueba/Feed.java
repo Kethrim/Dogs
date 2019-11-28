@@ -28,7 +28,7 @@ import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
-    private ApiCall api = new ApiCall();
+
     private RecyclerView mRv;
     private LinkedList<perro> perros;
 

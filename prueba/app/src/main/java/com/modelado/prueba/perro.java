@@ -17,14 +17,6 @@ public class perro {
         this.comentarios = new LinkedList<>();
     }
 
-    public void anadirMeGusta(){
-        this.numMeGusta+=1;
-    }
-
-    public void anadirComentario(String coment){
-        comentarios.add(coment);
-    }
-
 }
 
 
