@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DogSpotting</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="image_from_url" />
+</resources>
