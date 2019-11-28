@@ -10,9 +10,9 @@ import java.util.LinkedList;
 
 public class RecyclerAdaptador extends RecyclerView.Adapter<viewHolder> {
 
-    LinkedList<perro> perros;
+    LinkedList<Perro> perros;
 
-    public RecyclerAdaptador(LinkedList<perro> perros) {
+    public RecyclerAdaptador(LinkedList<Perro> perros) {
         this.perros = perros;
     }
 

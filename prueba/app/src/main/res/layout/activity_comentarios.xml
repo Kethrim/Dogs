@@ -4,36 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".comentarios">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="407dp"
-        android:id="@+id/comentarios"
-        android:layout_height="498dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/comentarios"
+            android:layout_width="338dp"
+            android:layout_height="476dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="39dp" />
+
+
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/nuevoComentario"
         android:layout_width="302dp"
         android:layout_height="53dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="527dp"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/enviarComentario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="subirComentario"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.27"
+        app:layout_constraintStart_toEndOf="@+id/nuevoComentario"
         app:srcCompat="@android:drawable/ic_menu_send"
-        tools:layout_editor_absoluteY="527dp"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

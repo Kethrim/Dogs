@@ -19,9 +19,9 @@ public class viewHolder extends RecyclerView.ViewHolder  implements View.OnClick
     ImageView imagenPerro;
     TextView nombrePerro;
     TextView numMeGusta;
-    LinkedList<perro> perros;
+    LinkedList<Perro> perros;
 
-    public viewHolder(@NonNull View itemView, LinkedList<perro> datos) {
+    public viewHolder(@NonNull View itemView, LinkedList<Perro> datos) {
         super(itemView);
         meGusta = (Button) itemView.findViewById(R.id.meGusta);
         imagenPerro = (ImageView) itemView.findViewById(R.id.imagenPerro);
@@ -33,7 +33,7 @@ public class viewHolder extends RecyclerView.ViewHolder  implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        perro objeto = perros.get(getAdapterPosition());
+        Perro objeto = perros.get(getAdapterPosition());
         objeto.numMeGusta+=1;
         numMeGusta.setText(objeto.numMeGusta+ " me gusta");
 

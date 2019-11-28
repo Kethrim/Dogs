@@ -189,7 +189,7 @@ public class ApiCall {
      * @return String que lo que haya sido responiddo por la pagina web.
      */
     private String apiLlamado(String url) {
-        MyTask a = new MyTask();
+        PeticionAsynk a = new PeticionAsynk();
         String salida = "";
         try {
             salida = a.execute(url).get();
@@ -199,7 +199,7 @@ public class ApiCall {
         return salida;
     }
 
-    private class MyTask extends AsyncTask<String, String, String> {
+    private class PeticionAsynk extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String... strings) {
