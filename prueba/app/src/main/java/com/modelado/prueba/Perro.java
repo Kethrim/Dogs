@@ -1,7 +1,7 @@
 package com.modelado.prueba;
 import java.util.LinkedList;
 
-public class perro {
+public class Perro {
     String nombrePerro;
     int imagenPerro;
     int idPerro;
@@ -9,7 +9,7 @@ public class perro {
     LinkedList<String> comentarios;
 
 
-    public perro(int imagen, String nombre, int megusta, int idPerro) {
+    public Perro(int imagen, String nombre, int megusta, int idPerro) {
         this.imagenPerro = imagen;
         this.nombrePerro = nombre;
         this.idPerro = idPerro;

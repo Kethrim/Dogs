@@ -28,12 +28,7 @@ import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
-
-    private RecyclerView mRv;
-    private LinkedList<perro> perros;
-
-
-
+    private LinkedList<Perro> perros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +39,6 @@ public class Feed extends AppCompatActivity {
         llenaFeed();
 
         RecyclerView contenedor = findViewById(R.id.contenedor);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         contenedor.setAdapter(new RecyclerAdaptador(perros));
@@ -52,18 +46,20 @@ public class Feed extends AppCompatActivity {
 
     }
 
+    /* Abre una nueva actividad para los comentarios*/
     public void comentar(View view){
         Intent intent = new Intent(this, comentarios.class);
         startActivity(intent);
     }
 
+    /* Llena el feed mediante la api */
     public void llenaFeed(){
         perros = new LinkedList<>();
-        perros.add(new perro(R.drawable.uno,"Athan_Ervin",5, 76281));
-        perros.add(new perro(R.drawable.dos,"Alfonse_Barrett", 10, 47042));
-        perros.add(new perro(R.drawable.tres, "Zackery_Maverick", 6,41630));
-        perros.add(new perro(R.drawable.cuatro, "Max Wilbur", 79, 85653));
-        perros.add(new perro(R.drawable.cinco, "asdfghjklñqwertyuiopzxcvbnm", 95,36133));
+        perros.add(new Perro(R.drawable.uno,"Athan_Ervin",5, 76281));
+        perros.add(new Perro(R.drawable.dos,"Alfonse_Barrett", 10, 47042));
+        perros.add(new Perro(R.drawable.tres, "Zackery_Maverick", 6,41630));
+        perros.add(new Perro(R.drawable.cuatro, "Max Wilbur", 79, 85653));
+        perros.add(new Perro(R.drawable.cinco, "asdfghjklñqwertyuiopzxcvbnm", 95,36133));
     }
 
     /* El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
