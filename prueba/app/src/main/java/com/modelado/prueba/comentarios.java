@@ -21,7 +21,7 @@ public class comentarios extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(this);
         coments.setLayoutManager(linearLayoutManager);
 
-        
+
         Toast.makeText(this, "Preparando comentarios...", Toast.LENGTH_SHORT).show();
     }
 }
