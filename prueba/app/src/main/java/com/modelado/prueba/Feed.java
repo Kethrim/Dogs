@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.modelado.apicall.ApiCall;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -27,7 +28,7 @@ import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
-
+    private ApiCall api = new ApiCall();
     private RecyclerView mRv;
     private LinkedList<perro> perros;
 
