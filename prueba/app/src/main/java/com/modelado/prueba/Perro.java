@@ -3,13 +3,13 @@ import java.util.LinkedList;
 
 public class Perro {
     String nombrePerro;
-    int imagenPerro;
+    String imagenPerro;
     int idPerro;
     int numMeGusta;
     LinkedList<String> comentarios;
 
 
-    public Perro(int imagen, String nombre, int megusta, int idPerro) {
+    public Perro(String imagen, String nombre, int megusta, int idPerro) {
         this.imagenPerro = imagen;
         this.nombrePerro = nombre;
         this.idPerro = idPerro;
