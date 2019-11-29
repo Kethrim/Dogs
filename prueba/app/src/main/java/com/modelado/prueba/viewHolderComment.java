@@ -6,11 +6,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class viewHolderComment extends RecyclerView.ViewHolder {
-    TextView comentario;
+import java.util.List;
 
-    public viewHolderComment(@NonNull View itemView) {
+public class viewHolderComment extends RecyclerView.ViewHolder {
+    TextView listaDeComentarios;
+    List<List<String>> listaDeListasComentarios;
+    List<Integer> listaId;
+
+
+    public viewHolderComment(@NonNull View itemView, List<List<String>> listaDeListasComentarios, List<Integer> listaId) {
         super(itemView);
-        comentario = itemView.findViewById(R.id.comentario);
+        listaDeComentarios = itemView.findViewById(R.id.listaComentarios);
+        this.listaDeListasComentarios = listaDeListasComentarios;
+        this.listaId = listaId;
     }
 }

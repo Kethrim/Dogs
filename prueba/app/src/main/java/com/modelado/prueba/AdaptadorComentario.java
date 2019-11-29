@@ -8,30 +8,35 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /* Creamos un adaptador para poder mostrar los comentarios.*/
 public class AdaptadorComentario extends RecyclerView.Adapter<viewHolderComment> {
-    LinkedList<String> comentarios;
+    List<Integer> listaId;
+    List<List<String>> listaDeListasComentarios;
 
-    public AdaptadorComentario(LinkedList<String> comentarios) {
-        this.comentarios = comentarios;
+
+    public AdaptadorComentario(List<Integer> listaId, List<List<String>> listaDeListasComentarios) {
+        this.listaId = listaId;
+        this.listaDeListasComentarios = listaDeListasComentarios;
     }
 
     @NonNull
     @Override
     public viewHolderComment onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_coments, parent, false);
-        return new viewHolderComment(view);
+        return new viewHolderComment(view, listaDeListasComentarios, listaId);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolderComment holder, int position) {
-        holder.comentario.setText(comentarios.get(position));
+        int dog_id = listaId.get(position);
+        holder.listaDeComentarios.setText(listaDeListasComentarios.get(dog_id).toString());
     }
 
     @Override
     public int getItemCount() {
-        return comentarios.size();
+        return listaId.size();
     }
 }
