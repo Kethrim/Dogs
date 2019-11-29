@@ -31,12 +31,12 @@ public class AdaptadorComentario extends RecyclerView.Adapter<viewHolderComment>
 
     @Override
     public void onBindViewHolder(@NonNull viewHolderComment holder, int position) {
-        int dog_id = listaId.get(position);
-        holder.listaDeComentarios.setText(listaDeListasComentarios.get(dog_id).toString());
+        System.out.println(holder.toString());
+        holder.listaDeComentarios.setText(listaId.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return listaId.size();
+        return 1;
     }
 }

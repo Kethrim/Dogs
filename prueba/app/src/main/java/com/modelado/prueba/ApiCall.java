@@ -136,7 +136,6 @@ public class ApiCall {
      */
     public String[][] feed(String key) {
         String url = "http://modelado2020-1.tk/feed.php?key=" + key;
-        System.out.println("El resultado del llamado es" + apiLlamado(url));
         JsonArray perros_json = this.gson.fromJson(apiLlamado(url), JsonArray.class);
         String[][] dos_mil_perritos = new String[2000][4];
 
@@ -194,7 +193,7 @@ public class ApiCall {
         try {
             salida = a.execute(url).get();
         } catch (Exception e) {
-            System.out.println("fallo MyTask" + e.getMessage());
+            System.out.println("fallo apiLlamado" + e.getMessage());
         }
         return salida;
     }
@@ -222,8 +221,8 @@ public class ApiCall {
                     System.out.println("Fallo detalles");
                 }
             } catch (Exception e) {
-                System.out.println("DoInBack de MyTask error" + e.getMessage());
-                e.printStackTrace();
+                System.out.println("DoInBack de PeticionAsynkF error" + e.getMessage());
+                //e.printStackTrace();
             }
             return response.toString();
         }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class comentarios extends AppCompatActivity {
@@ -46,6 +47,29 @@ public class comentarios extends AppCompatActivity {
 
     public void llenaComentarios(){
         listaId = (ArrayList<Integer>) getIntent().getSerializableExtra("ids");
+
+        listaDeListasDeComentarios = new LinkedList<>();
+        LinkedList<String> listaRelleno = new LinkedList<>();
+        listaRelleno.add("Hola");
+        listaDeListasDeComentarios.add(listaRelleno);
+
+
+        listaRelleno.add("Bola");
+        listaDeListasDeComentarios.add(listaRelleno);
+
+
+
+        listaRelleno.add("Bonis");
+        listaDeListasDeComentarios.add(listaRelleno);
+
+
+        listaRelleno.add("Bolis bonis");
+        listaDeListasDeComentarios.add(listaRelleno);
+
+        listaRelleno.add("Borrego");
+        listaDeListasDeComentarios.add(listaRelleno);
+
+
         //Llamar a la api y obtener la lista de comentarios
 
 
