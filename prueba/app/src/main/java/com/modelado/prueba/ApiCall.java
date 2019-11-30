@@ -39,21 +39,8 @@ public class ApiCall {
      */
     public void comentar(String key, String dog_id, String comentario) {
         String url = "http://modelado2020-1.tk/comentarios.php?key=" + key + "&dog_id=" + dog_id;
-        try {
-
-            URL link = new URL(url);
-            String postData = "text=" + URLEncoder.encode(comentario, "UTF-8");
-            byte[] postDataBytes = postData.getBytes(StandardCharsets.UTF_8);
-
-            HttpURLConnection conn = (HttpURLConnection) link.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.getOutputStream().write(postDataBytes);
-            conn.getInputStream();
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        System.out.println("ANTES DE LLAMAR A POST");
+        apiLlamado(url, "POST", comentario);
     }
 
     /**
@@ -72,7 +59,7 @@ public class ApiCall {
     public String[] perroDetalles(String key, String dog_id) {
         String url = "http://modelado2020-1.tk/detalles.php?key=" + key + "&dog_id=" + dog_id;
 
-        JsonObject jsonObj = gson.fromJson(apiLlamado(url), JsonObject.class);
+        JsonObject jsonObj = gson.fromJson(apiLlamado(url,"GET",""), JsonObject.class);
         JsonObject perro_info = jsonObj.get("perro").getAsJsonObject();
         return new String[]{perro_info.get("dog_id").getAsString(),
                 perro_info.get("nombre").getAsString(),
@@ -95,7 +82,7 @@ public class ApiCall {
     public String[] perroComentarios(String key, String dog_id) {
         String url = "http://modelado2020-1.tk/detalles.php?key=" + key + "&dog_id=" + dog_id;
 
-        JsonArray perro_coments = gson.fromJson(apiLlamado(url), JsonObject.class).get("comentarios").getAsJsonArray();
+        JsonArray perro_coments = gson.fromJson(apiLlamado(url,"GET",""), JsonObject.class).get("comentarios").getAsJsonArray();
         String[] comentarios = new String[perro_coments.size()];
 
         for (int i = 0; i < comentarios.length; i++) {
@@ -113,7 +100,7 @@ public class ApiCall {
      */
     public void likes(String key, String dog_id) {
         String url = "http://modelado2020-1.tk/likes.php?key=" + key + "&dog_id=" + dog_id;
-        apiLlamado(url);
+        apiLlamado(url,"GET","");
     }
 
     /**
@@ -131,7 +118,7 @@ public class ApiCall {
      */
     public String[][] feed(String key) {
         String url = "http://modelado2020-1.tk/feed.php?key=" + key;
-        JsonArray perros_json = this.gson.fromJson(apiLlamado(url), JsonArray.class);
+        JsonArray perros_json = this.gson.fromJson(apiLlamado(url,"GET",""), JsonArray.class);
         String[][] dos_mil_perritos = new String[2000][4];
 
         for (int i = 0; i < 2000; i++) {
@@ -156,7 +143,7 @@ public class ApiCall {
      */
     public String login(String usr, String password) {
         String url = "http://modelado2020-1.tk/login.php?user=" + usr + "&pass=" + password;
-        JsonObject jsonObject = gson.fromJson(apiLlamado(url), JsonObject.class);
+        JsonObject jsonObject = gson.fromJson(apiLlamado(url,"GET",""), JsonObject.class);
         if (jsonObject.get("status").getAsString().equals("ok"))
             return jsonObject.get("Message").getAsString(); // esto regresa el key
         return "ERROR:usr or password incorrect";
@@ -172,7 +159,7 @@ public class ApiCall {
      */
     public boolean singUp(String usr, String password) {
         String url = "http://modelado2020-1.tk/signup.php?user=" + usr + "&pass=" + password;
-        JsonObject jsonObject = gson.fromJson(apiLlamado(url), JsonObject.class);
+        JsonObject jsonObject = gson.fromJson(apiLlamado(url,"GET", ""), JsonObject.class);
         return jsonObject.get("status").getAsString().equals("ok");
     }
 
@@ -182,11 +169,11 @@ public class ApiCall {
      * @param url String con los parametros GET
      * @return String que lo que haya sido responiddo por la pagina web.
      */
-    private String apiLlamado(String url) {
+    private String apiLlamado(String url, String metodo, String comentario ) {
         PeticionAsynk a = new PeticionAsynk();
         String salida = "";
         try {
-            salida = a.execute(url).get();
+            salida = a.execute(url, metodo, comentario).get();
         } catch (Exception e) {
             System.out.println("fallo apiLlamado" + e.getMessage());
         }
@@ -199,25 +186,43 @@ public class ApiCall {
         protected String doInBackground(String... strings) {
             String url = strings[0];
             StringBuffer response = new StringBuffer();
-            try {
-                URL urlForGetRequest = new URL(url);
-                String readLine = null;
-                HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
-                conection.setRequestMethod("GET");
-                int responseCode = conection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    BufferedReader in = new BufferedReader(
-                            new InputStreamReader(conection.getInputStream()));
-                    while ((readLine = in.readLine()) != null) {
-                        response.append(readLine);
-                    }
-                    in.close();
-                } else {
-                    System.out.println("Fallo detalles");
+            if (strings[1].equals("POST")) {
+                try {
+
+                    URL link = new URL(url);
+                    String postData = "text=" + URLEncoder.encode( strings[2], "UTF-8");
+                    byte[] postDataBytes = postData.getBytes(StandardCharsets.UTF_8);
+
+                    HttpURLConnection conn = (HttpURLConnection) link.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    conn.getOutputStream().write(postDataBytes);
+                    conn.getInputStream();
+
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
-            } catch (Exception e) {
-                System.out.println("DoInBack de PeticionAsynkF error" + e.getMessage());
-                //e.printStackTrace();
+            } else {
+                try {
+                    URL urlForGetRequest = new URL(url);
+                    String readLine = null;
+                    HttpURLConnection conection = (HttpURLConnection) urlForGetRequest.openConnection();
+                    conection.setRequestMethod("GET");
+                    int responseCode = conection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        BufferedReader in = new BufferedReader(
+                                new InputStreamReader(conection.getInputStream()));
+                        while ((readLine = in.readLine()) != null) {
+                            response.append(readLine);
+                        }
+                        in.close();
+                    } else {
+                        System.out.println("Fallo detalles");
+                    }
+                } catch (Exception e) {
+                    System.out.println("DoInBack de PeticionAsynkF error" + e.getMessage());
+                    //e.printStackTrace();
+                }
             }
             return response.toString();
         }

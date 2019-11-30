@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private EditText usuario, contrasena;
-    private String llaveUsuario;
+    private String llaveUsuario, user, password;
 
 
     @Override
@@ -20,30 +20,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Accdemos a los editText para poder entrar al feed
         usuario = findViewById(R.id.user);
         contrasena = findViewById(R.id.password);
 
+        //Cuando regresas para los comentarios, es necesario que se lean éstos editText
+        if (usuario != null && contrasena != null) {
+            user = usuario.getText().toString();
+            password = contrasena.getText().toString();
+
+        }
     }
 
-    //Método que usa el botón entrar
-    public void entrar(View view){
-        String user = usuario.getText().toString(), password = contrasena.getText().toString();
-
-        if (user.isEmpty() || password.length()==0){
+    /**
+     * Método que usa el botón entrar
+     */
+    public void entrar(View view) {
+        user = usuario.getText().toString();
+        password = contrasena.getText().toString();
+        if (user.isEmpty() || password.length() == 0) {
             Toast.makeText(this, "Ingresa los datos correspondientes", Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             //Verificar los datos
-            llaveUsuario = "sha256"+user+password;
+            ApiCall api = new ApiCall();
+            String key = api.login(user, password);
+            if (key.equals("ERROR:usr or password incorrect")) {
+                Toast.makeText(this, "Usuario o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
+            } else {
+                llaveUsuario = key;
+            }
+            //Si se puede acceder a la llave entonces creamos la actividad Feed
+            if (llaveUsuario != null) {
+                Intent intent = new Intent(this, Feed.class);
+                intent.putExtra("nombreUsuario", user);
+                intent.putExtra("contraUsuario", password);
+                startActivity(intent);
+            }
 
-            Intent intent = new Intent(this, Feed.class);
-            intent.putExtra("llaveUsuario", this.llaveUsuario);
-            startActivity(intent);
         }
 
     }
 
-    //Método que usa el botón registrarse
-    public void registrarse(View view){
+    /**
+     * Método que usa el botón registrarse
+     */
+    public void registrarse(View view) {
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }

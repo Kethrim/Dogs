@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-/** Indica qué información se mostrará en el card item para el feed.*/
-public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnClickListener{
+/**
+ * Indica qué información se mostrará en el card item para el feed.
+ */
+public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnClickListener {
     private Button meGusta;
     private ImageView imagenPerro;
     private TextView idPerro;
@@ -25,9 +27,12 @@ public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnC
 
     Context contexto;
 
-    /**Crea un viewHolderFeed
+    /**
+     * Crea un viewHolderFeed
+     *
      * @param itemView-vista.
-     * @param datos- lista de datos de perros que se mostrará.*/
+     * @param datos-          lista de datos de perros que se mostrará.
+     */
     public viewHolderFeed(@NonNull View itemView, ArrayList<Perro> datos) {
         super(itemView);
         meGusta = itemView.findViewById(R.id.meGusta);
@@ -46,32 +51,47 @@ public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnC
         imagenPerro.setOnClickListener(this);
     }
 
-    /**Obtiene la imagen de un perro.
-     * @return ImageView donde se coloca la imagen. */
+    /**
+     * Obtiene la imagen de un perro.
+     *
+     * @return ImageView donde se coloca la imagen.
+     */
     public ImageView getImagenPerro() {
         return imagenPerro;
     }
 
-    /**Obtiene el nombre de un perro.
-     * @return TextView dónde se pone el nombre.*/
+    /**
+     * Obtiene el nombre de un perro.
+     *
+     * @return TextView dónde se pone el nombre.
+     */
     public TextView getNombrePerro() {
         return nombrePerro;
     }
 
-    /**Obtiene el número de me gustas del perro.
-     * @return TextView en el formato "x me gusta", con x el número de me gustas.*/
+    /**
+     * Obtiene el número de me gustas del perro.
+     *
+     * @return TextView en el formato "x me gusta", con x el número de me gustas.
+     */
     public TextView getNumMeGusta() {
         return numMeGusta;
     }
 
-    /**Obtiene la lista de Perros que se mostrará en el feed.
-     * @return lista de los perros.*/
+    /**
+     * Obtiene la lista de Perros que se mostrará en el feed.
+     *
+     * @return lista de los perros.
+     */
     public ArrayList<Perro> getPerros() {
         return perros;
     }
 
-    /**Obtiene el id del perro.
-     * @return id único del perro.*/
+    /**
+     * Obtiene el id del perro.
+     *
+     * @return id único del perro.
+     */
     public TextView getIdPerro() {
         return idPerro;
     }
@@ -79,10 +99,10 @@ public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnC
     @Override
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.meGusta:
-                objeto.setNumMeGusta(objeto.getNumMeGusta()+1);
-                numMeGusta.setText(objeto.getNumMeGusta()+ " me gusta");
+                objeto.setNumMeGusta(objeto.getNumMeGusta() + 1);
+                numMeGusta.setText(objeto.getNumMeGusta() + " me gusta");
                 break;
             case R.id.imagenPerro:
 

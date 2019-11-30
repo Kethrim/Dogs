@@ -16,12 +16,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-/** El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
+/**
+ * El adaptador le pasa los datos al recycler view, pone las imágenes, etc
+ */
 public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
     private ArrayList<Perro> perros;
 
-    /**Crea un adaptador para el feed.
-     * @param perros- lista de perros que se mostrará en el feed.*/
+    /**
+     * Crea un adaptador para el feed.
+     *
+     * @param perros- lista de perros que se mostrará en el feed.
+     */
     public AdaptadorFeed(ArrayList<Perro> perros) {
         this.perros = perros;
     }
@@ -48,6 +53,8 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
         holder.getNumMeGusta().setText(perros.get(position).getNumMeGusta() + " me gusta");
 
         holder.getIdPerro().setText(String.valueOf(perros.get(position).getIdPerro()));
+
+//        holder.getImagenPerro().setOnClickListener();
 
 
     }

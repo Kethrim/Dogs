@@ -2,6 +2,7 @@ package com.modelado.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -31,9 +32,15 @@ public class Registro extends AppCompatActivity {
             Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
             //Verificar los datos
             ApiCall apiCall = new ApiCall();
-            if (apiCall.singUp(user,password))
-                Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Hubo un error :C", Toast.LENGTH_SHORT).show();
+            if (apiCall.singUp(user,password)){
+//                Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_LONG).show();
+
+//                Intent intent = new Intent(this, MainActivity.class);
+//                startActivity(intent);
+                Toast.makeText(this, "Te registraste exitosamente. Inicia sesión.", Toast.LENGTH_SHORT).show();
+
+            } else
+                Toast.makeText(this, "Hubo un error :C", Toast.LENGTH_SHORT).show();
 
         }
     }

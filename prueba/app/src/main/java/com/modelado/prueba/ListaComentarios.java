@@ -1,6 +1,7 @@
 package com.modelado.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -28,12 +29,12 @@ public class ListaComentarios extends AppCompatActivity {
         setContentView(R.layout.activity_lista_comentarios);
         Bundle extras = getIntent().getExtras();
 
-        String idPerro  = "",
+        String idPerro = "",
                 nombrePerro = "",
                 meGustas = "";
         Bitmap bitmap = null;
 
-        if (extras != null){
+        if (extras != null) {
             idPerro = extras.getString("idPerrito");
             nombrePerro = extras.getString("nombrePerrito");
             meGustas = extras.getString("meGustasPerrito");
@@ -41,23 +42,22 @@ public class ListaComentarios extends AppCompatActivity {
 //            bitmap = extras.getParcelable("bitmapImagenPerrito");
         }
 
-                            System.out.println("\t\t\tBITMAAAAAAAAP "+bitmap);
+        System.out.println("\t\t\tBITMAAAAAAAAP " + bitmap);
 
         vistaDeListaDeComentariosDePerros = findViewById(R.id.listaComentarios);
-        nuevoComentario= findViewById(R.id.nuevoComentario);
+        nuevoComentario = findViewById(R.id.nuevoComentario);
 
         postea = findViewById(R.id.postea);
         nombre = findViewById(R.id.nombrePerroDetalles);
         id = findViewById(R.id.idPerroDetalles);
         meGusta = findViewById(R.id.meGustaDetalles);
 
-        nombre.setText("Nombre: "+nombrePerro);
+        nombre.setText("Nombre: " + nombrePerro);
         meGusta.setText(meGustas);
-        id.setText("Id: "+idPerro);
+        id.setText("Id: " + idPerro);
 //        imagen.setImageBitmap(bitmap);
 
         obtenComentarios(Integer.parseInt(idPerro));
-
 
 
         vistaDeListaDeComentariosDePerros.setText(idPerro);
@@ -68,9 +68,9 @@ public class ListaComentarios extends AppCompatActivity {
 
     }
 
-    private void obtenComentarios(int idPerro){
-//        ApiCall api = new ApiCall();
-
+    private void obtenComentarios(int idPerro) {
+        ApiCall api = new ApiCall();
+//        api.perroComentarios(,idPerro);
 
     }
 }

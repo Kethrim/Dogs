@@ -5,4 +5,5 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="image_from_url" />
+    <string name="key_usr">12345</string>
 </resources>
