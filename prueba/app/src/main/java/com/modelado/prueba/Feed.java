@@ -52,7 +52,16 @@ public class Feed extends AppCompatActivity {
     public void detallesPerro(View view) {
         Intent intent = new Intent(this, ListaComentarios.class);
         intent.putExtra("llaveUsuario", llaveUsuario);
+        
         startActivity(intent);
+    }
+
+    public void darMeGusta(View view){
+
+//        if (R.id.meGusta == view.getId()) {
+//            objeto.setNumMeGusta(objeto.getNumMeGusta() + 1);
+//            numMeGusta.setText(objeto.getNumMeGusta() + " me gusta");
+//        }
     }
 
     /**
