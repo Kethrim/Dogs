@@ -14,16 +14,16 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-<!--        NO USAR ÉSTA ACTIVIDAD-->
-        <activity android:name=".CommentActivity"></activity>
 
 <!--        Primera actividad de comentarios, la modificaré-->
-        <activity android:name=".comentarios">
+        <activity android:name=".ListaComentarios">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Feed" />
 
         </activity>
+
+
         <activity android:name=".Feed">
             <intent-filter>
                 <action android:name="android.intent.action.FEED" />
@@ -31,6 +31,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".Registro"
             android:parentActivityName=".MainActivity">
@@ -40,6 +42,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

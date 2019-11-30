@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -31,35 +33,28 @@ public class Feed extends AppCompatActivity {
         contenedor.setAdapter(new AdaptadorFeed(perros));
         contenedor.setLayoutManager(layoutManager);
 
-    }
 
-    /** Abre una nueva actividad para los comentarios*/
-    public void comentar(View view){
-
-//        Intent intent = new Intent(this, ListaComentarios.class);
-////        intent.putExtra("ids", listaDeId);
-//        startActivity(intent);
     }
 
     /** Llena el feed mediante la api */
-    private void llenaFeed(){
+    public ArrayList<Perro> llenaFeed(){
         perros = new ArrayList<>();
         listaDeId = new ArrayList<>();
 
+        LinkedList<String> listaComentPerrito = new LinkedList<>();
+
+
         String[][] dos_mil_perros = api.feed("961b6dd3ede3cb8ecbaacbd68de040cd78eb2ed5889130cceb4c49268ea4d506");
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 5; i++) {
             Perro perro = new Perro(dos_mil_perros[i][0],
-                    dos_mil_perros[i][1],
-                    Integer.parseInt(dos_mil_perros[i][2]),
+                    dos_mil_perros[i][1], i+3,   //aumente me gustas para probar
                     Integer.parseInt(dos_mil_perros[i][3]));
             listaDeId.add(Integer.parseInt(dos_mil_perros[i][3]));
+            listaComentPerrito.add("Hola perrito_"+i);
+            perro.setComentarios(listaComentPerrito); //subir ésta lista a la api
             perros.add(perro);
         }
-
+        return perros;
 
     }
-
-
-
-    /* El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
 }

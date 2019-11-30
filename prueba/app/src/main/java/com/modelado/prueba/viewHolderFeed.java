@@ -1,7 +1,14 @@
 package com.modelado.prueba;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -9,15 +16,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /** Indica qué información se mostrará en el card item para el feed.*/
 public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnClickListener{
     private Button meGusta;
     private ImageView imagenPerro;
+    private TextView idPerro;
     private TextView nombrePerro;
     private TextView numMeGusta;
     private ArrayList<Perro> perros;
+//    private TextView añadeComentario;
+//    private EditText nuevoComentario;
+
+    Context contexto;
 
     /**Crea un viewHolderFeed
      * @param itemView-vista.
@@ -28,8 +39,16 @@ public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnC
         imagenPerro = itemView.findViewById(R.id.imagenPerro);
         nombrePerro = itemView.findViewById(R.id.nombrePerro);
         numMeGusta = itemView.findViewById(R.id.numMeGusta);
+        idPerro = itemView.findViewById(R.id.idPerro);
+//        añadeComentario = itemView.findViewById(R.id.postea);
+//        nuevoComentario = itemView.findViewById(R.id.nuevoComentario);
         perros = datos;
+        contexto = itemView.getContext();
+
+
+//        añadeComentario.setOnClickListener(this);
         meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+        imagenPerro.setOnClickListener(this);
     }
 
     /**Obtiene la imagen de un perro.
@@ -56,12 +75,31 @@ public class viewHolderFeed extends RecyclerView.ViewHolder  implements View.OnC
         return perros;
     }
 
+    /**Obtiene el id del perro.
+     * @return id único del perro.*/
+    public TextView getIdPerro() {
+        return idPerro;
+    }
+
     @Override
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
-        //Cambiar para hacer la petición de agregar el me gusta, pedir el número de me gustas.
-        objeto.setNumMeGusta(objeto.getNumMeGusta()+1);
-        numMeGusta.setText(objeto.getNumMeGusta()+ " me gusta");
-//        meGusta.setEnabled(false);
+        switch (v.getId()){
+            case R.id.meGusta:
+                objeto.setNumMeGusta(objeto.getNumMeGusta()+1);
+                numMeGusta.setText(objeto.getNumMeGusta()+ " me gusta");
+                break;
+            case R.id.imagenPerro:
+
+                Intent intent = new Intent(contexto, ListaComentarios.class);
+                intent.putExtra("idPerrito", idPerro.getText());
+                intent.putExtra("nombrePerrito", nombrePerro.getText());
+                intent.putExtra("meGustasPerrito", numMeGusta.getText());
+
+//                intent.putExtra("bitmapImagenPerrito", bitmap);
+
+                contexto.startActivity(intent);
+                break;
+        }
     }
 }

@@ -1,8 +1,9 @@
 package com.modelado.prueba;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /** Estructura de un perro para mostrar en el feed.*/
-public class Perro {
+public class Perro implements Serializable {
     private String nombrePerro;
     private String imagenPerro;
     private int idPerro;
@@ -59,8 +60,12 @@ public class Perro {
         return numMeGusta;
     }
 
-    public LinkedList<String> getComentarios() {
-        return comentarios;
+    public LinkedList<String> getComentarios(int idPerro) {
+        if (idPerro == this.idPerro){
+            return comentarios;
+        } else {
+            return null;
+        }
     }
 }
 

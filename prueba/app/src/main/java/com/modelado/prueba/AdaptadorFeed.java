@@ -1,12 +1,14 @@
 
 package com.modelado.prueba;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -20,9 +22,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-
+/** El adaptador le pasa los datos al recycler view, pone las imágenes, etc */
 public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
-    private ImageView imageImg;
     private ArrayList<Perro> perros;
 
     /**Crea un adaptador para el feed.
@@ -36,12 +37,13 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
     //Se crea la vista de cada card item (tarjeta) usando el viewHolderFeed
     public viewHolderFeed onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
+
         return new viewHolderFeed(vista, perros);
     }
 
     @Override
     //Se asignan los valores de cada card item (tarjeta)
-    public void onBindViewHolder(@NonNull viewHolderFeed holder, int position) {
+    public void onBindViewHolder(@NonNull final viewHolderFeed holder, int position) {
         holder.getNombrePerro().setText(perros.get(position).getNombrePerro());
 
         holder.getImagenPerro().setImageBitmap(
@@ -49,11 +51,15 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
                         holder.getPerros().get(position).getImagenPerro() // da la url de la imagen del perro
                 ));
 
-        holder.getNumMeGusta().setText(Integer.toString(perros.get(position).getNumMeGusta()) + " me gusta");
+        holder.getNumMeGusta().setText(perros.get(position).getNumMeGusta() + " me gusta");
+
+        holder.getIdPerro().setText(String.valueOf(perros.get(position).getIdPerro()));
+
+
     }
 
     @Override
-    //Número de datos qu cargará el feed, en este caso será el número de elementos de la lista.
+    //Número de datos que cargará el feed, en este caso será el número de elementos de la lista.
     public int getItemCount() {
         return perros.size();
     }
@@ -76,6 +82,8 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
             System.out.println("Fallo al descargar la imagen: " + e.getMessage());
             e.printStackTrace();
         }
+
+//        System.out.println("\t\t\t\tBITMAP DE LA IMAGEN"+salida);
         return salida;
     }
 

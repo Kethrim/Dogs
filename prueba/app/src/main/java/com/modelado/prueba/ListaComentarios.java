@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,81 +19,66 @@ import java.util.List;
 
 public class ListaComentarios extends AppCompatActivity {
 
-    TextView listaDeComentarios, postea;
-    EditText nuevoComentario;
 
-    ArrayList<Integer> listaId;
-    List<List<String>> listaDeListasDeComentarios;
-    AdaptadorComentario adaptador;
+    TextView vistaDeListaDeComentariosDePerros,
+            postea,
+            nombre,
+            id,
+            meGusta;
+    ImageView imagen;
+    LinkedList<String> listaDeComentariosDePerro;
+    EditText nuevoComentario;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_comentarios);
+        Bundle extras = getIntent().getExtras();
+
+        String idPerro  = "",
+                nombrePerro = "",
+                meGustas = "";
+        Bitmap bitmap = null;
+
+        if (extras != null){
+            idPerro = extras.getString("idPerrito");
+            nombrePerro = extras.getString("nombrePerrito");
+            meGustas = extras.getString("meGustasPerrito");
+
+//            bitmap = extras.getParcelable("bitmapImagenPerrito");
+        }
+
+                            System.out.println("\t\t\tBITMAAAAAAAAP "+bitmap);
+
+        vistaDeListaDeComentariosDePerros = findViewById(R.id.listaComentarios);
+        nuevoComentario= findViewById(R.id.nuevoComentario);
+
+        postea = findViewById(R.id.postea);
+        nombre = findViewById(R.id.nombrePerroDetalles);
+        id = findViewById(R.id.idPerroDetalles);
+        meGusta = findViewById(R.id.meGustaDetalles);
+
+        nombre.setText("Nombre: "+nombrePerro);
+        meGusta.setText(meGustas);
+        id.setText("Id: "+idPerro);
+//        imagen.setImageBitmap(bitmap);
+
+        obtenComentarios(Integer.parseInt(idPerro));
 
 
-        listaDeComentarios = findViewById(R.id.listaComentarios);
-        postea = findViewById(R.id.post);
 
-//        llenaComentarios();
-
-//        coments = findViewById(R.id.comentarios);
-//        nuevoComentario = findViewById(R.id.nuevoComentario);
-//        enviar = findViewById(R.id.enviarComentario);
-
-
-//        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(getApplicationContext());
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        coments.setLayoutManager(linearLayoutManager);
-//
-//        adaptador = new AdaptadorComentario(listaId, listaDeListasDeComentarios);
-//        coments.setAdapter(adaptador);
-    }
-
-    public void llenaComentarios(){
-        listaId = (ArrayList<Integer>) getIntent().getSerializableExtra("ids");
-
-        listaDeListasDeComentarios = new LinkedList<>();
-        LinkedList<String> listaRelleno = new LinkedList<>();
-        listaRelleno.add("Hola");
-        listaDeListasDeComentarios.add(listaRelleno);
-
-
-        listaRelleno.add("Bola");
-        listaDeListasDeComentarios.add(listaRelleno);
-
-
-
-        listaRelleno.add("Bonis");
-        listaDeListasDeComentarios.add(listaRelleno);
-
-
-        listaRelleno.add("Bolis bonis");
-        listaDeListasDeComentarios.add(listaRelleno);
-
-        listaRelleno.add("Borrego");
-        listaDeListasDeComentarios.add(listaRelleno);
-
-
-        //Llamar a la api y obtener la lista de comentarios
-
+        vistaDeListaDeComentariosDePerros.setText(idPerro);
+        listaDeComentariosDePerro = new LinkedList<>();
+//        listaDeComentariosDePerro.add(nuevoComent);
+//        String comentariosAnteriores = vistaDeListaDeComentariosDePerros.getText().toString();
+//        vistaDeListaDeComentariosDePerros.setText(comentariosAnteriores+listaDeComentariosDePerro.toString());
 
     }
 
+    private void obtenComentarios(int idPerro){
+//        ApiCall api = new ApiCall();
 
-    public void subirComentario(View view){
-     //   actualiza();
+
     }
-
-    /*
-    public void actualiza(){
-        String nuevoComent = nuevoComentario.getText().toString();
-        if (nuevoComent.length() != 0)
-                comentarios.add(nuevoComentario.getText().toString());
-        adaptador.notifyItemInserted(comentarios.size());
-        nuevoComentario.setText("");
-    }*/
-
-
 }

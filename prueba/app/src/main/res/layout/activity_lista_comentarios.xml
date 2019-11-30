@@ -11,14 +11,71 @@
 
     <TextView
         android:id="@+id/listaComentarios"
-        android:layout_width="353dp"
-        android:layout_height="501dp"
+        android:layout_width="305dp"
+        android:layout_height="369dp"
         android:layout_marginTop="16dp"
         android:background="#FFFFFF"
+        android:text="lista del cometarios del perro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="362dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imagenPerroDetalles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="13dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="45dp" />
+
+        <TextView
+            android:id="@+id/nombrePerroDetalles"
+            android:layout_width="239dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="7dp"
+            android:text="nombre del perro" />
+
+        <TextView
+            android:id="@+id/idPerroDetalles"
+            android:layout_width="239dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="110dp"
+            android:layout_marginBottom="47dp"
+            android:text="id del perro" />
+
+        <TextView
+            android:id="@+id/meGustaDetalles"
+            android:layout_width="239dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="111dp"
+            android:layout_marginTop="63dp"
+            android:text="me gustas del perro " />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/bottom"
@@ -32,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/listaComentarios">
 
         <EditText
-            android:id="@+id/add_comment"
+            android:id="@+id/nuevoComentario"
             android:layout_width="297dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -52,5 +109,6 @@
             android:textColor="#E91E63" />
 
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

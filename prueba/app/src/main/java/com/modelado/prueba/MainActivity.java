@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private EditText usuario, contrasena;
+    private String llaveUsuario;
 
 
     @Override
@@ -32,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingresa los datos correspondientes", Toast.LENGTH_SHORT).show();
         } else{
             //Verificar los datos
+            llaveUsuario = "sha256"+user+password;
 
             Intent intent = new Intent(this, Feed.class);
+            intent.putExtra("llaveUsuario", this.llaveUsuario);
             startActivity(intent);
         }
 
