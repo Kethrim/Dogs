@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.LinkedList;
 
 public class ListaComentarios extends AppCompatActivity {
@@ -14,9 +16,9 @@ public class ListaComentarios extends AppCompatActivity {
 
     TextView vistaDeListaDeComentariosDePerros,
             postea,
-            nombre,
-            id,
-            meGusta;
+            nombrePerro,
+            idPerro,
+            meGustasPerro;
 
     LinkedList<String> listaDeComentariosDePerro;
     EditText nuevoComentario;
@@ -30,9 +32,14 @@ public class ListaComentarios extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         //Obtenemos los datos del perro a partir de lo que ya teníamos en el feed.
-        String idPerro = findViewById(R.id.idPerro).toString(),
-                nombrePerro = findViewById(R.id.nombrePerro).toString(),
-                meGustas = findViewById(R.id.numMeGusta).toString();
+
+        TextView textView = findViewById(R.id.idPerro),
+                textView1 = findViewById(R.id.nombrePerro),
+                textView2 = findViewById(R.id.numMeGusta);
+
+        String id = textView.getText().toString(),
+                nombre = textView1.getText().toString(),
+                meGusta = textView2.getText().toString();
 
         //Accedemos a la llave del usuario, que será necesaria para comentar
         if (extras != null) {
@@ -45,21 +52,16 @@ public class ListaComentarios extends AppCompatActivity {
         nuevoComentario = findViewById(R.id.nuevoComentario);
 
         postea = findViewById(R.id.postea);
-        nombre = findViewById(R.id.nombrePerroDetalles);
-        id = findViewById(R.id.idPerroDetalles);
-        meGusta = findViewById(R.id.meGustaDetalles);
+        nombrePerro = findViewById(R.id.nombrePerroDetalles);
+        idPerro = findViewById(R.id.idPerroDetalles);
+        meGustasPerro = findViewById(R.id.meGustaDetalles);
 
         //Le damos formato al layout que usa ésta actividad
         //falta la imagen
-        nombre.setText("Nombre: " + nombrePerro);
-        meGusta.setText(meGustas);
-        id.setText("Id: " + idPerro);
+        nombrePerro.setText("Nombre: " + nombre);
+        meGustasPerro.setText(meGusta);
+        idPerro.setText("Id: " + id);
 
-//        obtenComentarios(Integer.parseInt(idPerro));
-//
-//
-//        vistaDeListaDeComentariosDePerros.setText(idPerro);
-//        listaDeComentariosDePerro = new LinkedList<>();
 
     }
 

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Indica qué información se mostrará en el card item para el feed.
  */
-public class viewHolderFeed extends RecyclerView.ViewHolder {
+public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnClickListener {
     private Button meGusta;
     private ImageView imagenPerro;
     private TextView idPerro;
@@ -43,7 +43,8 @@ public class viewHolderFeed extends RecyclerView.ViewHolder {
         perros = datos;
         contexto = itemView.getContext();
 
-//        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+        imagenPerro.setOnClickListener(this);
+        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
     }
 
     /**
@@ -92,4 +93,18 @@ public class viewHolderFeed extends RecyclerView.ViewHolder {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Perro objeto = perros.get(getAdapterPosition());
+        switch (v.getId()){
+            case R.id.meGusta:
+                break;
+            case R.id.imagenPerro:
+                Intent intent = new Intent(contexto, ListaComentarios.class);
+                intent.putExtra("idPerrito", idPerro.getText().toString());
+                contexto.startActivity(intent);
+
+                break;
+        }
+    }
 }

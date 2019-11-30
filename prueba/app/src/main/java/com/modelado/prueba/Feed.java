@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -49,20 +50,17 @@ public class Feed extends AppCompatActivity {
     /**
      * Nos abre la nueva actividad para ver los comentarios.
      */
-    public void detallesPerro(View view) {
-        Intent intent = new Intent(this, ListaComentarios.class);
-        intent.putExtra("llaveUsuario", llaveUsuario);
-        
-        startActivity(intent);
-    }
-
-    public void darMeGusta(View view){
-
-//        if (R.id.meGusta == view.getId()) {
-//            objeto.setNumMeGusta(objeto.getNumMeGusta() + 1);
-//            numMeGusta.setText(objeto.getNumMeGusta() + " me gusta");
-//        }
-    }
+//    public void detallesPerro(View view) {
+//        Intent intent = new Intent(this, ListaComentarios.class);
+//        intent.putExtra("llaveUsuario", llaveUsuario);
+//        startActivity(intent);
+//    }
+//
+//    public void darMeGusta(View view){
+//        TextView idPerrito = findViewById(R.id.idPerro);
+//        String idPerro = idPerrito.getText().toString();
+//
+//    }
 
     /**
      * Llena el feed mediante la api
