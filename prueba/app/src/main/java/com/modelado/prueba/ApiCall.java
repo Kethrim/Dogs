@@ -28,11 +28,6 @@ public class ApiCall {
      * @version 1.0
      */
     private Gson gson = new Gson(); // Sirve para pasar strings a objetos del tipo Json
-    private AppCompatActivity activity;
-
-    public ApiCall(AppCompatActivity activity) {
-        this.activity = activity;
-    }
 
     /**
      * Metodo que le agrega un comentario a un perro

@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
-    private ApiCall api = new ApiCall(this);
+    private ApiCall api = new ApiCall();
     private ArrayList<Perro> perros;
     ArrayList<Integer> listaDeId;
 
