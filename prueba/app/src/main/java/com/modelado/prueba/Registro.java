@@ -11,6 +11,7 @@ public class Registro extends AppCompatActivity {
 
     private EditText usuario;
     private EditText contrasena;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,17 +21,22 @@ public class Registro extends AppCompatActivity {
         contrasena = findViewById(R.id.password);
     }
 
-    public void validarDatos(View view){
-        String user = usuario.getText().toString(), password = contrasena.getText().toString();
+    public void validarDatos(View view) {
+        String user = usuario.getText().toString(),
+                password = contrasena.getText().toString();
 
-        if (user.isEmpty() || password.length()==0){
+        if (user.isEmpty() || password.length() == 0) {
             Toast.makeText(this, "Completa el ingreso de datos", Toast.LENGTH_SHORT).show();
-        } else{
+        } else {
             Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
             //Verificar los datos
+            ApiCall apiCall = new ApiCall();
+            if (apiCall.singUp(user,password))
+                Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hubo un error :C", Toast.LENGTH_SHORT).show();
+
         }
     }
-
 
 
 }
