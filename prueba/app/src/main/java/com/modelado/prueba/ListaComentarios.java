@@ -4,22 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class comentarios extends AppCompatActivity {
+public class ListaComentarios extends AppCompatActivity {
 
-    private RecyclerView coments;
-    private TextView nuevoComentario;
-    private ImageButton enviar;
+    TextView listaDeComentarios, postea;
+    EditText nuevoComentario;
+
     ArrayList<Integer> listaId;
     List<List<String>> listaDeListasDeComentarios;
     AdaptadorComentario adaptador;
@@ -28,21 +27,25 @@ public class comentarios extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comentarios);
-
-        llenaComentarios();
-
-        coments = findViewById(R.id.comentarios);
-        nuevoComentario = findViewById(R.id.nuevoComentario);
-        enviar = findViewById(R.id.enviarComentario);
+        setContentView(R.layout.activity_lista_comentarios);
 
 
-        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(getApplicationContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        coments.setLayoutManager(linearLayoutManager);
+        listaDeComentarios = findViewById(R.id.listaComentarios);
+        postea = findViewById(R.id.post);
 
-        adaptador = new AdaptadorComentario(listaId, listaDeListasDeComentarios);
-        coments.setAdapter(adaptador);
+//        llenaComentarios();
+
+//        coments = findViewById(R.id.comentarios);
+//        nuevoComentario = findViewById(R.id.nuevoComentario);
+//        enviar = findViewById(R.id.enviarComentario);
+
+
+//        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(getApplicationContext());
+//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        coments.setLayoutManager(linearLayoutManager);
+//
+//        adaptador = new AdaptadorComentario(listaId, listaDeListasDeComentarios);
+//        coments.setAdapter(adaptador);
     }
 
     public void llenaComentarios(){

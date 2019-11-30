@@ -17,36 +17,43 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class RecyclerAdaptador extends RecyclerView.Adapter<viewHolder> {
-    private ImageView imageImg;
-    LinkedList<Perro> perros;
 
-    public RecyclerAdaptador(LinkedList<Perro> perros) {
+public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
+    private ImageView imageImg;
+    private ArrayList<Perro> perros;
+
+    /**Crea un adaptador para el feed.
+     * @param perros- lista de perros que se mostrará en el feed.*/
+    public AdaptadorFeed(ArrayList<Perro> perros) {
         this.perros = perros;
     }
 
     @NonNull
     @Override
-    public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    //Se crea la vista de cada card item (tarjeta) usando el viewHolderFeed
+    public viewHolderFeed onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
-        return new viewHolder(vista, perros);
+        return new viewHolderFeed(vista, perros);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        holder.nombrePerro.setText(perros.get(position).nombrePerro);
+    //Se asignan los valores de cada card item (tarjeta)
+    public void onBindViewHolder(@NonNull viewHolderFeed holder, int position) {
+        holder.getNombrePerro().setText(perros.get(position).getNombrePerro());
 
-        holder.imagenPerro.setImageBitmap(
+        holder.getImagenPerro().setImageBitmap(
                 descargaImg( // da un Bitmap con la url
-                        holder.perros.get(position).imagenPerro // da la url de la imagen del perro
+                        holder.getPerros().get(position).getImagenPerro() // da la url de la imagen del perro
                 ));
 
-        holder.numMeGusta.setText(Integer.toString(perros.get(position).numMeGusta) + " me gusta");
+        holder.getNumMeGusta().setText(Integer.toString(perros.get(position).getNumMeGusta()) + " me gusta");
     }
 
     @Override
+    //Número de datos qu cargará el feed, en este caso será el número de elementos de la lista.
     public int getItemCount() {
         return perros.size();
     }
@@ -90,7 +97,7 @@ public class RecyclerAdaptador extends RecyclerView.Adapter<viewHolder> {
         protected Bitmap doInBackground(String... strings) {
             String imageHttpAddress = strings[0];
             Bitmap imagen = null;
-            URL imageUrl = null;
+            URL imageUrl;
 
             try {
                 imageUrl = new URL(imageHttpAddress);

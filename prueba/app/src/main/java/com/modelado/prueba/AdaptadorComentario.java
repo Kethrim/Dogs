@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /* Creamos un adaptador para poder mostrar los comentarios.*/
@@ -24,7 +23,7 @@ public class AdaptadorComentario extends RecyclerView.Adapter<viewHolderComment>
     @NonNull
     @Override
     public viewHolderComment onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_coments, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_comentarios, parent, false);
         return new viewHolderComment(view, listaDeListasComentarios, listaId);
 
     }

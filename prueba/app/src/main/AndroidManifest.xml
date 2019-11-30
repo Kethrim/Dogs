@@ -14,8 +14,16 @@
         android:theme="@style/Theme.AppCompat.Light"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+<!--        NO USAR ÉSTA ACTIVIDAD-->
         <activity android:name=".CommentActivity"></activity>
-        <activity android:name=".comentarios" />
+
+<!--        Primera actividad de comentarios, la modificaré-->
+        <activity android:name=".comentarios">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Feed" />
+
+        </activity>
         <activity android:name=".Feed">
             <intent-filter>
                 <action android:name="android.intent.action.FEED" />
