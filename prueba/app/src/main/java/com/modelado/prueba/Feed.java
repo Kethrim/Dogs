@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -31,16 +33,26 @@ public class Feed extends AppCompatActivity {
 
 
         //Cargamos el feed y lo llenamos mediante la api.
-
         llenaFeed();
-        RecyclerView contenedor = findViewById(R.id.contenedor);
 
+        //Creamos la vista e interacción con el adaptador
+        RecyclerView contenedor = findViewById(R.id.contenedor);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        contenedor.setAdapter(new AdaptadorFeed(perros));
+        AdaptadorFeed adapta = new AdaptadorFeed(perros);
+        contenedor.setAdapter(adapta);
         contenedor.setLayoutManager(layoutManager);
 
 
+    }
+
+    /**
+     * Nos abre la nueva actividad para ver los comentarios.
+     */
+    public void detallesPerro(View view) {
+        Intent intent = new Intent(this, ListaComentarios.class);
+        intent.putExtra("llaveUsuario", llaveUsuario);
+        startActivity(intent);
     }
 
     /**

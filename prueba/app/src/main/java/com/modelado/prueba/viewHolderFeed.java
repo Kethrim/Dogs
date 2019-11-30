@@ -22,8 +22,6 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     private TextView nombrePerro;
     private TextView numMeGusta;
     private ArrayList<Perro> perros;
-//    private TextView añadeComentario;
-//    private EditText nuevoComentario;
 
     Context contexto;
 
@@ -40,15 +38,12 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
         nombrePerro = itemView.findViewById(R.id.nombrePerro);
         numMeGusta = itemView.findViewById(R.id.numMeGusta);
         idPerro = itemView.findViewById(R.id.idPerro);
-//        añadeComentario = itemView.findViewById(R.id.postea);
-//        nuevoComentario = itemView.findViewById(R.id.nuevoComentario);
+
+
         perros = datos;
         contexto = itemView.getContext();
 
-
-//        añadeComentario.setOnClickListener(this);
         meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
-        imagenPerro.setOnClickListener(this);
     }
 
     /**
@@ -99,22 +94,9 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
-        switch (v.getId()) {
-            case R.id.meGusta:
-                objeto.setNumMeGusta(objeto.getNumMeGusta() + 1);
-                numMeGusta.setText(objeto.getNumMeGusta() + " me gusta");
-                break;
-            case R.id.imagenPerro:
-
-                Intent intent = new Intent(contexto, ListaComentarios.class);
-                intent.putExtra("idPerrito", idPerro.getText());
-                intent.putExtra("nombrePerrito", nombrePerro.getText());
-                intent.putExtra("meGustasPerrito", numMeGusta.getText());
-
-//                intent.putExtra("bitmapImagenPerrito", bitmap);
-
-                contexto.startActivity(intent);
-                break;
+        if (R.id.meGusta == v.getId()) {
+            objeto.setNumMeGusta(objeto.getNumMeGusta() + 1);
+            numMeGusta.setText(objeto.getNumMeGusta() + " me gusta");
         }
     }
 }

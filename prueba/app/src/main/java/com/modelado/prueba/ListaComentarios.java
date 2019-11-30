@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -18,9 +17,10 @@ public class ListaComentarios extends AppCompatActivity {
             nombre,
             id,
             meGusta;
-    ImageView imagen;
+
     LinkedList<String> listaDeComentariosDePerro;
     EditText nuevoComentario;
+    String llaveUsuario;
 
 
     @Override
@@ -29,20 +29,17 @@ public class ListaComentarios extends AppCompatActivity {
         setContentView(R.layout.activity_lista_comentarios);
         Bundle extras = getIntent().getExtras();
 
-        String idPerro = "",
-                nombrePerro = "",
-                meGustas = "";
-        Bitmap bitmap = null;
+        //Obtenemos los datos del perro a partir de lo que ya teníamos en el feed.
+        String idPerro = findViewById(R.id.idPerro).toString(),
+                nombrePerro = findViewById(R.id.nombrePerro).toString(),
+                meGustas = findViewById(R.id.numMeGusta).toString();
 
+        //Accedemos a la llave del usuario, que será necesaria para comentar
         if (extras != null) {
-            idPerro = extras.getString("idPerrito");
-            nombrePerro = extras.getString("nombrePerrito");
-            meGustas = extras.getString("meGustasPerrito");
-
-//            bitmap = extras.getParcelable("bitmapImagenPerrito");
+            llaveUsuario = extras.getString("llaveUsuario");
         }
 
-        System.out.println("\t\t\tBITMAAAAAAAAP " + bitmap);
+
 
         vistaDeListaDeComentariosDePerros = findViewById(R.id.listaComentarios);
         nuevoComentario = findViewById(R.id.nuevoComentario);
@@ -52,25 +49,23 @@ public class ListaComentarios extends AppCompatActivity {
         id = findViewById(R.id.idPerroDetalles);
         meGusta = findViewById(R.id.meGustaDetalles);
 
+        //Le damos formato al layout que usa ésta actividad
+        //falta la imagen
         nombre.setText("Nombre: " + nombrePerro);
         meGusta.setText(meGustas);
         id.setText("Id: " + idPerro);
-//        imagen.setImageBitmap(bitmap);
 
-        obtenComentarios(Integer.parseInt(idPerro));
-
-
-        vistaDeListaDeComentariosDePerros.setText(idPerro);
-        listaDeComentariosDePerro = new LinkedList<>();
-//        listaDeComentariosDePerro.add(nuevoComent);
-//        String comentariosAnteriores = vistaDeListaDeComentariosDePerros.getText().toString();
-//        vistaDeListaDeComentariosDePerros.setText(comentariosAnteriores+listaDeComentariosDePerro.toString());
+//        obtenComentarios(Integer.parseInt(idPerro));
+//
+//
+//        vistaDeListaDeComentariosDePerros.setText(idPerro);
+//        listaDeComentariosDePerro = new LinkedList<>();
 
     }
 
     private void obtenComentarios(int idPerro) {
         ApiCall api = new ApiCall();
-//        api.perroComentarios(,idPerro);
+//        api.perroComentarios();
 
     }
 }

@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
     private ArrayList<Perro> perros;
+    private String llaveUsuario;
 
     /**
      * Crea un adaptador para el feed.
@@ -54,8 +55,6 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
 
         holder.getIdPerro().setText(String.valueOf(perros.get(position).getIdPerro()));
 
-//        holder.getImagenPerro().setOnClickListener();
-
 
     }
 
@@ -74,7 +73,7 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
      *            "https://ruta_de_da_imagen"
      * @return Un Bitmap que contiene toda la información de la imagen
      */
-    private Bitmap descargaImg(String url) {
+    public Bitmap descargaImg(String url) {
         PeticionAsynk a = new PeticionAsynk();
         Bitmap salida = null;
         try {
