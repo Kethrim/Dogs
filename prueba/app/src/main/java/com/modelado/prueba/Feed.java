@@ -41,8 +41,10 @@ public class Feed extends AppCompatActivity {
         RecyclerView contenedor = findViewById(R.id.contenedor);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        AdaptadorFeed adapta = new AdaptadorFeed(perros);
-        contenedor.setAdapter(adapta);
+        if (extras != null) {
+            AdaptadorFeed adapta = new AdaptadorFeed(perros);
+            contenedor.setAdapter(adapta);
+        }
         contenedor.setLayoutManager(layoutManager);
 
 
@@ -51,11 +53,11 @@ public class Feed extends AppCompatActivity {
     /**
      * Nos abre la nueva actividad para ver los comentarios.
      */
-//    public void detallesPerro(View view) {
-//        Intent intent = new Intent(this, ListaComentarios.class);
-//        intent.putExtra("llaveUsuario", llaveUsuario);
-//        startActivity(intent);
-//    }
+    public void detallesPerro(View view) {
+        Intent intent = new Intent(this, ListaComentarios.class);
+        intent.putExtra("llaveUsuario", this.llaveUsuario);
+        startActivity(intent);
+    }
 //
 //    public void darMeGusta(View view){
 //        TextView idPerrito = findViewById(R.id.idPerro);
