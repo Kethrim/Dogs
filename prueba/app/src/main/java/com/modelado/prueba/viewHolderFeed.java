@@ -96,8 +96,17 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.meGusta:
+                ApiCall apiCall = new ApiCall();
+                String key = "970f519c2cadbcefb1e81694f904bc6229dd2a8300e98c6d0d4fc4bfca584140";
+                apiCall.likes(key, objeto.getIdPerro() + "");
+                int numMeGusta = Integer.parseInt(
+                        apiCall.perroDetalles(
+                                key,
+                                objeto.getIdPerro() + "")[3]);
+                objeto.setNumMeGusta(numMeGusta);
+                this.numMeGusta.setText(numMeGusta + " me gusta");
                 break;
             case R.id.imagenPerro:
                 Intent intent = new Intent(contexto, ListaComentarios.class);
