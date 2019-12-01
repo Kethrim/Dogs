@@ -33,9 +33,9 @@ public class ListaComentarios extends AppCompatActivity {
 
         //Obtenemos los datos del perro a partir de lo que ya teníamos en el feed.
 
-        TextView textView = findViewById(R.id.idPerro),
-                textView1 = findViewById(R.id.nombrePerro),
-                textView2 = findViewById(R.id.numMeGusta);
+        TextView textView = findViewById(R.id.idPerroDetalles),
+                textView1 = findViewById(R.id.nombrePerroDetalles),
+                textView2 = findViewById(R.id.meGustaDetalles);
 
         String id = textView.getText().toString(),
                 nombre = textView1.getText().toString(),

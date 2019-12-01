@@ -33,8 +33,9 @@ public class Feed extends AppCompatActivity {
             }
 
 
-        //Cargamos el feed y lo llenamos mediante la api.
-        llenaFeed();
+        // Cargamos el feed si y solo si es la primera vez
+        if (extras != null)
+            llenaFeed();
 
         //Creamos la vista e interacción con el adaptador
         RecyclerView contenedor = findViewById(R.id.contenedor);
@@ -78,10 +79,9 @@ public class Feed extends AppCompatActivity {
                     Integer.parseInt(dos_mil_perros[i][3]));
 
 
-            api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
+            //api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
 
             LinkedList<String> listaComentPerrito = new LinkedList<>();
-            listaComentPerrito.add("Hola perrito " + i);
             perro.setComentarios(listaComentPerrito);
             perros.add(perro);
         }
