@@ -103,12 +103,12 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
                 ApiCall apiCall = new ApiCall();
                 String key = llaveUsuario.getText().toString();
                 apiCall.likes(key, objeto.getIdPerro() + "");
-                int numMeGusta = Integer.parseInt(
+                int num = Integer.parseInt(
                         apiCall.perroDetalles(
                                 key,
                                 objeto.getIdPerro() + "")[3]);
-                objeto.setNumMeGusta(numMeGusta);
-                this.numMeGusta.setText(numMeGusta + " me gusta");
+                objeto.setNumMeGusta(num);
+                this.numMeGusta.setText(num + " me gusta");
                 break;
             case R.id.imagenPerro:
                 Intent intent = new Intent(contexto, ListaComentarios.class);
