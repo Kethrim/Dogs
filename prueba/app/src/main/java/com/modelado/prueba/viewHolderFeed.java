@@ -2,6 +2,7 @@ package com.modelado.prueba;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -115,6 +117,14 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
             case R.id.imagenPerro:
                 Intent intent = new Intent(contexto, ListaComentarios.class);
                 intent.putExtra("idPerrito", idPerro.getText().toString());
+                intent.putExtra("nombrePerrito", nombrePerro.getText().toString());
+                intent.putExtra("nomMeGusta", numMeGusta.getText().toString());
+                intent.putExtra("llave", llaveUsuario.getText().toString());
+
+                Bitmap bitmap = objeto.descargaImg();
+                ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+                intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
                 contexto.startActivity(intent);
 
                 break;

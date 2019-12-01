@@ -20,6 +20,9 @@ public class ListaComentarios extends AppCompatActivity {
             idPerro,
             meGustasPerro;
 
+    String idPerrrito;
+    String numMegustaPerrito;
+    String nombrePerrito;
     LinkedList<String> listaDeComentariosDePerro;
     EditText nuevoComentario;
     String llaveUsuario;
@@ -43,7 +46,10 @@ public class ListaComentarios extends AppCompatActivity {
 
         //Accedemos a la llave del usuario, que será necesaria para comentar
         if (extras != null) {
-            llaveUsuario = extras.getString("llaveUsuario");
+            llaveUsuario = extras.getString("llave");
+            idPerrrito = extras.getString("idPerrito");
+            nombrePerrito = extras.getString("nombrePerrito");
+            numMegustaPerrito = extras.getString("numMeGusta");
         }
 
 
@@ -58,9 +64,11 @@ public class ListaComentarios extends AppCompatActivity {
 
         //Le damos formato al layout que usa ésta actividad
         //falta la imagen
-        nombrePerro.setText("Nombre: " + nombre);
-        meGustasPerro.setText(meGusta);
-        idPerro.setText("Id: " + id);
+        nombrePerro.setText("Nombre: " + nombrePerrito);
+        meGustasPerro.setText(numMegustaPerrito);
+        idPerro.setText("Id: " + idPerrrito);
+        vistaDeListaDeComentariosDePerros.setText(idPerrrito);
+
 
 
     }

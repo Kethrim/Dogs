@@ -58,14 +58,6 @@ public class Feed extends AppCompatActivity {
 
     }
 
-    /**
-     * Nos abre la nueva actividad para ver los comentarios.
-     */
-    public void detallesPerro(View view) {
-        Intent intent = new Intent(this, ListaComentarios.class);
-        intent.putExtra("llaveUsuario", this.llaveUsuario);
-        startActivity(intent);
-    }
 //
 //    public void darMeGusta(View view){
 //        TextView idPerrito = findViewById(R.id.idPerro);

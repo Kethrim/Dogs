@@ -49,9 +49,7 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed>{
         holder.getNombrePerro().setText(perros.get(position).getNombrePerro());
 
         holder.getImagenPerro().setImageBitmap(
-                descargaImg( // da un Bitmap con la url
-                        holder.getPerros().get(position).getImagenPerro() // da la url de la imagen del perro
-                ));
+                perros.get(position).descargaImg());
 
         holder.getNumMeGusta().setText(perros.get(position).getNumMeGusta() + " me gusta");
 
