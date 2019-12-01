@@ -46,7 +46,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
         contexto = itemView.getContext();
 
         imagenPerro.setOnClickListener(this);
-//        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
     }
 
     /**
@@ -107,6 +107,8 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
                         apiCall.perroDetalles(
                                 key,
                                 objeto.getIdPerro() + "")[3]);
+                System.out.println("La key es" + key);
+                System.out.println("El num likes es" +num);
                 objeto.setNumMeGusta(num);
                 this.numMeGusta.setText(num + " me gusta");
                 break;
