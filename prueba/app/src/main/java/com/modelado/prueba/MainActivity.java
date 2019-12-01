@@ -26,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Cuando regresas para los comentarios, es necesario que se lean éstos editText
         if (usuario != null && contrasena != null) {
-            user = usuario.getText().toString();
-            password = contrasena.getText().toString();
-
+            if (!usuario.getText().toString().isEmpty() && !(contrasena.getText().toString().length() == 0)) {
+                user = usuario.getText().toString();
+                password = contrasena.getText().toString();
+            }
         }
     }
 

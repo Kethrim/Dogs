@@ -14,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class ApiCall {
 
@@ -79,14 +80,14 @@ public class ApiCall {
      * @return String[] De  longitud variada, donde cada elemento es un String que representa el
      * comentario
      */
-    public String[] perroComentarios(String key, String dog_id) {
+    public ArrayList<String> perroComentarios(String key, String dog_id) {
         String url = "http://modelado2020-1.tk/detalles.php?key=" + key + "&dog_id=" + dog_id;
 
         JsonArray perro_coments = gson.fromJson(apiLlamado(url,"GET",""), JsonObject.class).get("comentarios").getAsJsonArray();
-        String[] comentarios = new String[perro_coments.size()];
+        ArrayList<String> comentarios = new ArrayList<>(perro_coments.size());
 
-        for (int i = 0; i < comentarios.length; i++) {
-            comentarios[i] = perro_coments.get(i).getAsJsonObject().get("text").getAsString();
+        for (int i = 0; i < comentarios.size(); i++) {
+            comentarios.add(perro_coments.get(i).getAsJsonObject().get("text").getAsString());
         }
         return comentarios;
     }
@@ -119,6 +120,7 @@ public class ApiCall {
     public String[][] feed(String key) {
         String url = "http://modelado2020-1.tk/feed.php?key=" + key;
         JsonArray perros_json = this.gson.fromJson(apiLlamado(url,"GET",""), JsonArray.class);
+
         String[][] dos_mil_perritos = new String[2000][4];
 
         for (int i = 0; i < 2000; i++) {

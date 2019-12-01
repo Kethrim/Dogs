@@ -2,6 +2,7 @@ package com.modelado.prueba;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -46,7 +49,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
         contexto = itemView.getContext();
 
         imagenPerro.setOnClickListener(this);
-//        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
     }
 
     /**
@@ -98,22 +101,38 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
+        ApiCall apiCall = new ApiCall();
         switch (v.getId()) {
             case R.id.meGusta:
-                ApiCall apiCall = new ApiCall();
                 String key = llaveUsuario.getText().toString();
                 apiCall.likes(key, objeto.getIdPerro() + "");
-                int numMeGusta = Integer.parseInt(
+                int num = Integer.parseInt(
                         apiCall.perroDetalles(
                                 key,
                                 objeto.getIdPerro() + "")[3]);
-                objeto.setNumMeGusta(numMeGusta);
-                this.numMeGusta.setText(numMeGusta + " me gusta");
+                objeto.setNumMeGusta(num);
+                this.numMeGusta.setText(num + " me gusta");
                 break;
             case R.id.imagenPerro:
-                Intent intent = new Intent(contexto, ListaComentarios.class);
-                intent.putExtra("idPerrito", idPerro.getText().toString());
-                contexto.startActivity(intent);
+//                ArrayList<String> comentarios = apiCall.perroComentarios(llaveUsuario.getText().toString(), String.valueOf(objeto.getIdPerro()));
+//                if (comentarios != null){
+//                    ArrayList<String> listaDeComentarios = new ArrayList<>();
+                    Intent intent = new Intent(contexto, ListaComentarios.class);
+//                    if (comentarios.size()>0){
+//                        intent.putStringArrayListExtra("listaApi",comentarios);
+//                    }
+                    intent.putExtra("idPerrito", idPerro.getText());
+                    intent.putExtra("nombrePerrito", nombrePerro.getText().toString());
+                    intent.putExtra("numMeGusta", numMeGusta.getText().toString());
+                    intent.putExtra("llave", this.llaveUsuario.getText().toString());
+
+//                    intent.putStringArrayListExtra("listaPerro",objeto.getListaComentarios());
+                    // Pasaremos por bitmap en el intent
+//                    Bitmap bitmap = objeto.descargaImg();
+//                    ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+//                    intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
+                    contexto.startActivity(intent);
 
                 break;
         }

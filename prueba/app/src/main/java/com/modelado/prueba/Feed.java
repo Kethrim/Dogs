@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
@@ -25,6 +21,7 @@ public class Feed extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         Bundle extras = getIntent().getExtras();
+
         if (extras != null)
             if (extras.getString("nombreUsuario") != null) {
                 nombreUsuario = extras.getString("nombreUsuario");
@@ -32,15 +29,14 @@ public class Feed extends AppCompatActivity {
                 llaveUsuario = api.login(nombreUsuario, contrasenaUsuario);
             }
 
-
         //Cargamos el feed y lo llenamos mediante la api.
         llenaFeed();
+
 
         //Creamos la vista e interacción con el adaptador
         RecyclerView contenedor = findViewById(R.id.contenedor);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         AdaptadorFeed adapta = new AdaptadorFeed(perros, llaveUsuario);
         contenedor.setAdapter(adapta);
         contenedor.setLayoutManager(layoutManager);
@@ -49,27 +45,11 @@ public class Feed extends AppCompatActivity {
     }
 
     /**
-     * Nos abre la nueva actividad para ver los comentarios.
-     */
-//    public void detallesPerro(View view) {
-//        Intent intent = new Intent(this, ListaComentarios.class);
-//        intent.putExtra("llaveUsuario", llaveUsuario);
-//        startActivity(intent);
-//    }
-//
-//    public void darMeGusta(View view){
-//        TextView idPerrito = findViewById(R.id.idPerro);
-//        String idPerro = idPerrito.getText().toString();
-//
-//    }
-
-    /**
      * Llena el feed mediante la api
      */
     public ArrayList<Perro> llenaFeed() {
         perros = new ArrayList<>();
-        listaDeId = new ArrayList<>();
-
+        System.out.println("\t\t\t\tEN EL FEEED LA LLAVE " + llaveUsuario);
 
         String[][] dos_mil_perros = api.feed(llaveUsuario);
         for (int i = 0; i < 5; i++) {
@@ -81,7 +61,7 @@ public class Feed extends AppCompatActivity {
 
             api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
 
-            LinkedList<String> listaComentPerrito = new LinkedList<>();
+            ArrayList<String> listaComentPerrito = new ArrayList<>();
             listaComentPerrito.add("Hola perrito " + i);
             perro.setComentarios(listaComentPerrito);
             perros.add(perro);
