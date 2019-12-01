@@ -74,7 +74,7 @@ public class Feed extends AppCompatActivity {
 
 
         String[][] dos_mil_perros = api.feed(llaveUsuario);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2000; i++) {
             Perro perro = new Perro(dos_mil_perros[i][0],
                     dos_mil_perros[i][1],
                     Integer.parseInt(dos_mil_perros[i][2]),
