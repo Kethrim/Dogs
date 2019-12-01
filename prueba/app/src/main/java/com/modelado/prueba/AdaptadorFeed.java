@@ -1,6 +1,7 @@
 
 package com.modelado.prueba;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 /**
  * El adaptador le pasa los datos al recycler view, pone las imágenes, etc
  */
-public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
+public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed>{
     private ArrayList<Perro> perros;
     private String llaveUsuario;
 
@@ -28,8 +29,9 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
      *
      * @param perros- lista de perros que se mostrará en el feed.
      */
-    public AdaptadorFeed(ArrayList<Perro> perros) {
+    public AdaptadorFeed(ArrayList<Perro> perros, String llaveUsuario) {
         this.perros = perros;
+        this.llaveUsuario = llaveUsuario;
     }
 
     @NonNull
@@ -38,7 +40,7 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
     public viewHolderFeed onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
 
-        return new viewHolderFeed(vista, perros);
+        return new viewHolderFeed(vista, perros,llaveUsuario);
     }
 
     @Override
@@ -54,6 +56,8 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed> {
         holder.getNumMeGusta().setText(perros.get(position).getNumMeGusta() + " me gusta");
 
         holder.getIdPerro().setText(String.valueOf(perros.get(position).getIdPerro()));
+
+//        holder.getImagenPerro().setOnClickListener(this);
 
 
     }

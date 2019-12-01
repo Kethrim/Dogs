@@ -21,6 +21,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     private TextView idPerro;
     private TextView nombrePerro;
     private TextView numMeGusta;
+    private TextView llaveUsuario;
     private ArrayList<Perro> perros;
 
     Context contexto;
@@ -31,20 +32,21 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
      * @param itemView-vista.
      * @param datos-          lista de datos de perros que se mostrará.
      */
-    public viewHolderFeed(@NonNull View itemView, ArrayList<Perro> datos) {
+    public viewHolderFeed(@NonNull View itemView, ArrayList<Perro> datos, String llave) {
         super(itemView);
         meGusta = itemView.findViewById(R.id.meGusta);
         imagenPerro = itemView.findViewById(R.id.imagenPerro);
         nombrePerro = itemView.findViewById(R.id.nombrePerro);
         numMeGusta = itemView.findViewById(R.id.numMeGusta);
+        llaveUsuario = itemView.findViewById(R.id.llaveUsuario);
         idPerro = itemView.findViewById(R.id.idPerro);
-
+        llaveUsuario.setText(llave);
 
         perros = datos;
         contexto = itemView.getContext();
 
         imagenPerro.setOnClickListener(this);
-        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+//        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
     }
 
     /**
@@ -99,7 +101,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
         switch (v.getId()) {
             case R.id.meGusta:
                 ApiCall apiCall = new ApiCall();
-                String key = "970f519c2cadbcefb1e81694f904bc6229dd2a8300e98c6d0d4fc4bfca584140";
+                String key = llaveUsuario.getText().toString();
                 apiCall.likes(key, objeto.getIdPerro() + "");
                 int numMeGusta = Integer.parseInt(
                         apiCall.perroDetalles(

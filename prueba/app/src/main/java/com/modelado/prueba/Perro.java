@@ -42,8 +42,11 @@ public class Perro implements Serializable {
 
 
     public void setComentarios(LinkedList<String> comentarios) {
+
         this.comentarios = comentarios;
     }
+
+//    public LinkedList<String>
 
     /**
      * Obtiene el nombre del perro.

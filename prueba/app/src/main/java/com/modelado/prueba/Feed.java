@@ -40,7 +40,8 @@ public class Feed extends AppCompatActivity {
         RecyclerView contenedor = findViewById(R.id.contenedor);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        AdaptadorFeed adapta = new AdaptadorFeed(perros);
+
+        AdaptadorFeed adapta = new AdaptadorFeed(perros, llaveUsuario);
         contenedor.setAdapter(adapta);
         contenedor.setLayoutManager(layoutManager);
 
