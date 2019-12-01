@@ -12,7 +12,6 @@ public class Feed extends AppCompatActivity {
 
     private ApiCall api = new ApiCall();
     private ArrayList<Perro> perros;
-    ArrayList<Integer> listaDeId;
     private String nombreUsuario, contrasenaUsuario, llaveUsuario;
 
     @Override
@@ -30,7 +29,8 @@ public class Feed extends AppCompatActivity {
             }
 
         //Cargamos el feed y lo llenamos mediante la api.
-        llenaFeed();
+        if (extras!= null)
+            llenaFeed();
 
 
         //Creamos la vista e interacción con el adaptador
@@ -49,7 +49,6 @@ public class Feed extends AppCompatActivity {
      */
     public ArrayList<Perro> llenaFeed() {
         perros = new ArrayList<>();
-        System.out.println("\t\t\t\tEN EL FEEED LA LLAVE " + llaveUsuario);
 
         String[][] dos_mil_perros = api.feed(llaveUsuario);
         for (int i = 0; i < 5; i++) {

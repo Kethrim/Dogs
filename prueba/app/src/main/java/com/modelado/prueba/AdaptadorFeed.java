@@ -1,10 +1,6 @@
 
 package com.modelado.prueba;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -55,8 +48,6 @@ public class AdaptadorFeed extends RecyclerView.Adapter<viewHolderFeed>{
         holder.getNumMeGusta().setText(perros.get(position).getNumMeGusta() + " me gusta");
 
         holder.getIdPerro().setText(String.valueOf(perros.get(position).getIdPerro()));
-
-
     }
 
     @Override

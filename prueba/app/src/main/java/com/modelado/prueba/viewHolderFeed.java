@@ -128,10 +128,10 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
 
 //                    intent.putStringArrayListExtra("listaPerro",objeto.getListaComentarios());
                     // Pasaremos por bitmap en el intent
-//                    Bitmap bitmap = objeto.descargaImg();
-//                    ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
-//                    bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
-//                    intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
+                    Bitmap bitmap = objeto.descargaImg();
+                    ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+                    intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
                     contexto.startActivity(intent);
 
                 break;

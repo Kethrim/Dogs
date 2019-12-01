@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         usuario = findViewById(R.id.user);
         contrasena = findViewById(R.id.password);
 
-        //Cuando regresas para los comentarios, es necesario que se lean éstos editText
         if (usuario != null && contrasena != null) {
-            if (!usuario.getText().toString().isEmpty() && !(contrasena.getText().toString().length() == 0)) {
-                user = usuario.getText().toString();
-                password = contrasena.getText().toString();
-            }
+            user = usuario.getText().toString();
+            password = contrasena.getText().toString();
         }
+
+
+        //Cuando regresas para los comentarios, es necesario que se lean éstos editText
     }
 
     /**
