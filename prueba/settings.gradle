@@ -1,2 +1,2 @@
-include ':app', ':apiCall'
+include ':app'
 rootProject.name='prueba'
