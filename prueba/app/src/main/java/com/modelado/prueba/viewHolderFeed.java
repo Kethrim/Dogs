@@ -119,19 +119,18 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
                 Pasamos como argumentos por la actividad:
                     - llave del usuario
                     - id del perro
-                    - imagen del perro por un arreglo de bytes
                 */
                 Intent intent = new Intent(contexto, ListaComentarios.class);
                 intent.putExtra("llaveUsuario", textViewLlaveUsuario.getText().toString() );
                 intent.putExtra("idPerro", textViewIdPerro.getText().toString());
 
-                Bitmap bitmap = objeto.descargaImg();
-                ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+//                Bitmap bitmap = objeto.descargaImg();
+//                ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
+//                bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+//
+//                intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
 
-                intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
                 contexto.startActivity(intent);
-
                 break;
         }
     }
