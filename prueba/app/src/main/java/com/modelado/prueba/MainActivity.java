@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText usuario, contrasena;
-    private String llaveUsuario, user, password;
+    private EditText editTextUsuario, editTextContrasena;
+    private String llaveUsuario, usuario, contrasena;
 
 
     @Override
@@ -21,29 +21,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Accdemos a los editText para poder entrar al feed
-        usuario = findViewById(R.id.user);
-        contrasena = findViewById(R.id.password);
+        editTextUsuario = findViewById(R.id.MainUsuario);
+        editTextContrasena = findViewById(R.id.MainContrasena);
 
         //Cuando regresas para los comentarios, es necesario que se lean éstos editText
-        if (usuario != null && contrasena != null) {
-            user = usuario.getText().toString();
-            password = contrasena.getText().toString();
-
-        }
+//        if (usuario != null && contrasena != null) {
+//            user = usuario.getText().toString();
+//            password = contrasena.getText().toString();
+//
+//        }
     }
 
     /**
      * Método que usa el botón entrar
      */
     public void entrar(View view) {
-        user = usuario.getText().toString();
-        password = contrasena.getText().toString();
-        if (user.isEmpty() || password.length() == 0) {
+        usuario = editTextUsuario.getText().toString();
+        contrasena = editTextContrasena.getText().toString();
+        if (usuario.isEmpty() || contrasena.length() == 0) {
             Toast.makeText(this, "Ingresa los datos correspondientes", Toast.LENGTH_SHORT).show();
         } else {
             //Verificar los datos
             ApiCall api = new ApiCall();
-            String key = api.login(user, password);
+            String key = api.login(usuario, contrasena);
             if (key.equals("ERROR:usr or password incorrect")) {
                 Toast.makeText(this, "Usuario o contraseña incorrectos.", Toast.LENGTH_SHORT).show();
             } else {
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
             //Si se puede acceder a la llave entonces creamos la actividad Feed
             if (llaveUsuario != null) {
                 Intent intent = new Intent(this, Feed.class);
-                intent.putExtra("nombreUsuario", user);
-                intent.putExtra("contraUsuario", password);
+                intent.putExtra("keyUsuario", llaveUsuario);
                 startActivity(intent);
             }
 

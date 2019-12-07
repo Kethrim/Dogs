@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/user"
+        android:id="@+id/MainUsuario"
         android:layout_width="272dp"
         android:layout_height="0dp"
         android:layout_marginTop="180dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/logIn"
+        android:id="@+id/MainIngresar"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,10 +33,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/password" />
+        app:layout_constraintTop_toTopOf="@+id/MainContrasena" />
 
     <Button
-        android:id="@+id/signUp"
+        android:id="@+id/MainRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/MainContrasena"
         android:layout_width="279dp"
         android:layout_height="41dp"
         android:layout_marginTop="76dp"
@@ -58,6 +58,6 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user" />
+        app:layout_constraintTop_toBottomOf="@+id/MainUsuario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
