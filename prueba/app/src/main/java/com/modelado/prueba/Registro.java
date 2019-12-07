@@ -10,38 +10,32 @@ import android.widget.Toast;
 
 public class Registro extends AppCompatActivity {
 
-    private EditText usuario;
-    private EditText contrasena;
+    private EditText editTextUsuario;
+    private EditText editTextContrasena;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        usuario = findViewById(R.id.user);
-        contrasena = findViewById(R.id.password);
+        editTextUsuario = findViewById(R.id.RegistroUsuario);
+        editTextContrasena = findViewById(R.id.RegistroContrasena);
     }
 
     public void validarDatos(View view) {
-        String user = usuario.getText().toString(),
-                password = contrasena.getText().toString();
+        String usuario = editTextUsuario.getText().toString(),
+                contrasena = editTextContrasena.getText().toString();
 
-        if (user.isEmpty() || password.length() == 0) {
+        if (usuario.isEmpty() || contrasena.length() == 0) {
             Toast.makeText(this, "Completa el ingreso de datos", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
             //Verificar los datos
             ApiCall apiCall = new ApiCall();
-            if (apiCall.singUp(user,password)){
-//                Toast.makeText(this, "Usuario registrado exitosamente", Toast.LENGTH_LONG).show();
-
-//                Intent intent = new Intent(this, MainActivity.class);
-//                startActivity(intent);
+            if (apiCall.singUp(usuario,contrasena)){
                 Toast.makeText(this, "Te registraste exitosamente. Inicia sesión.", Toast.LENGTH_SHORT).show();
-
             } else
                 Toast.makeText(this, "Hubo un error :C", Toast.LENGTH_SHORT).show();
-
         }
     }
 
