@@ -18,37 +18,37 @@ import java.util.ArrayList;
  * Indica qué información se mostrará en el card item para el feed.
  */
 public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private Button meGusta;
-    private ImageView imagenPerro;
-    private TextView idPerro;
-    private TextView nombrePerro;
-    private TextView numMeGusta;
-    private TextView llaveUsuario;
+    private Button BotonMeGusta;
+    private ImageView imageViewImagenPerro;
+    private TextView textViewIdPerro;
+    private TextView textViewNombrePerro;
+    private TextView textViewNumMeGusta;
+    private TextView textViewLlaveUsuario;
     private ArrayList<Perro> perros;
-
-    Context contexto;
+    private Context contexto;
 
     /**
      * Crea un viewHolderFeed
      *
      * @param itemView-vista.
-     * @param datos-          lista de datos de perros que se mostrará.
+     * @param datos- lista de datos de perros que se mostrará.
+     * @param llave- llave del usuario.
      */
     public viewHolderFeed(@NonNull View itemView, ArrayList<Perro> datos, String llave) {
         super(itemView);
-        meGusta = itemView.findViewById(R.id.meGusta);
-        imagenPerro = itemView.findViewById(R.id.imagenPerro);
-        nombrePerro = itemView.findViewById(R.id.nombrePerro);
-        numMeGusta = itemView.findViewById(R.id.numMeGusta);
-        llaveUsuario = itemView.findViewById(R.id.llaveUsuario);
-        idPerro = itemView.findViewById(R.id.idPerro);
-        llaveUsuario.setText(llave);
+        BotonMeGusta = itemView.findViewById(R.id.FeedMeGusta);
+        imageViewImagenPerro = itemView.findViewById(R.id.FeedImagenPerro);
+        textViewNombrePerro = itemView.findViewById(R.id.FeedNombrePerro);
+        textViewNumMeGusta = itemView.findViewById(R.id.FeedNumMeGusta);
+        textViewLlaveUsuario = itemView.findViewById(R.id.FeedLlaveUsuario);
+        textViewIdPerro = itemView.findViewById(R.id.FeedIdPerro);
+        textViewLlaveUsuario.setText(llave);
 
         perros = datos;
         contexto = itemView.getContext();
 
-        imagenPerro.setOnClickListener(this);
-        meGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
+        imageViewImagenPerro.setOnClickListener(this);
+        BotonMeGusta.setOnClickListener(this); //al dar click se aumenta un me gusta.
     }
 
     /**
@@ -57,7 +57,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
      * @return ImageView donde se coloca la imagen.
      */
     public ImageView getImagenPerro() {
-        return imagenPerro;
+        return imageViewImagenPerro;
     }
 
     /**
@@ -66,7 +66,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
      * @return TextView dónde se pone el nombre.
      */
     public TextView getNombrePerro() {
-        return nombrePerro;
+        return textViewNombrePerro;
     }
 
     /**
@@ -75,7 +75,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
      * @return TextView en el formato "x me gusta", con x el número de me gustas.
      */
     public TextView getNumMeGusta() {
-        return numMeGusta;
+        return textViewNumMeGusta;
     }
 
     /**
@@ -93,7 +93,7 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
      * @return id único del perro.
      */
     public TextView getIdPerro() {
-        return idPerro;
+        return textViewIdPerro;
     }
 
 
@@ -101,9 +101,9 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View v) {
         Perro objeto = perros.get(getAdapterPosition());
         switch (v.getId()) {
-            case R.id.meGusta:
+            case R.id.FeedMeGusta:
                 ApiCall apiCall = new ApiCall();
-                String key = llaveUsuario.getText().toString();
+                String key = textViewLlaveUsuario.getText().toString();
                 apiCall.likes(key, objeto.getIdPerro() + "");
                 int num = Integer.parseInt(
                         apiCall.perroDetalles(
@@ -112,18 +112,23 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
                 System.out.println("La key es" + key);
                 System.out.println("El num likes es" +num);
                 objeto.setNumMeGusta(num);
-                this.numMeGusta.setText(num + " me gusta");
+                this.textViewNumMeGusta.setText(num + " me gusta");
                 break;
-            case R.id.imagenPerro:
+            case R.id.FeedImagenPerro:
+                /* Al dar click en la imagen se abre la actividad de lista de comentarios
+                Pasamos como argumentos por la actividad:
+                    - llave del usuario
+                    - id del perro
+                    - imagen del perro por un arreglo de bytes
+                */
                 Intent intent = new Intent(contexto, ListaComentarios.class);
-                intent.putExtra("idPerrito", idPerro.getText().toString());
-                intent.putExtra("nombrePerrito", nombrePerro.getText().toString());
-                intent.putExtra("nomMeGusta", numMeGusta.getText().toString());
-                intent.putExtra("llave", llaveUsuario.getText().toString());
+                intent.putExtra("llaveUsuario", textViewLlaveUsuario.getText().toString() );
+                intent.putExtra("idPerro", textViewIdPerro.getText().toString());
 
                 Bitmap bitmap = objeto.descargaImg();
                 ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
+
                 intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
                 contexto.startActivity(intent);
 
