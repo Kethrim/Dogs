@@ -16,12 +16,10 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 <!--        Primera actividad de comentarios, la modificaré-->
-        <activity android:name=".ListaComentarios">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Feed" />
+        <activity android:name=".ListaComentarios"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
-        </activity>
 
 
         <activity android:name=".Feed">
