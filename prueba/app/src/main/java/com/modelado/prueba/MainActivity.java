@@ -26,14 +26,6 @@ public class MainActivity extends AppCompatActivity {
         editTextUsuario = findViewById(R.id.MainUsuario);
         editTextContrasena = findViewById(R.id.MainContrasena);
 
-
-
-        //Cuando regresas para los comentarios, es necesario que se lean éstos editText
-//        if (usuario != null && contrasena != null) {
-//            user = usuario.getText().toString();
-//            password = contrasena.getText().toString();
-//
-//        }
     }
 
     /**
@@ -59,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("keyUsuario", llaveUsuario);
                 startActivity(intent);
             }
-
-            Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
             editTextContrasena.setText("");
             editTextUsuario.setText("");
 
