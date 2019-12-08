@@ -124,12 +124,6 @@ public class viewHolderFeed extends RecyclerView.ViewHolder implements View.OnCl
                 intent.putExtra("llaveUsuario", textViewLlaveUsuario.getText().toString() );
                 intent.putExtra("idPerro", textViewIdPerro.getText().toString());
 
-//                Bitmap bitmap = objeto.descargaImg();
-//                ByteArrayOutputStream byteArrayInputStream= new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayInputStream);
-//
-//                intent.putExtra("byteArray", byteArrayInputStream.toByteArray());
-
                 contexto.startActivity(intent);
                 break;
         }
