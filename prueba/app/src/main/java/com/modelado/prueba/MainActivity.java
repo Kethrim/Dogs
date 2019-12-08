@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         editTextUsuario = findViewById(R.id.MainUsuario);
         editTextContrasena = findViewById(R.id.MainContrasena);
 
+
+
         //Cuando regresas para los comentarios, es necesario que se lean éstos editText
 //        if (usuario != null && contrasena != null) {
 //            user = usuario.getText().toString();
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Método que usa el botón entrar
      */
-    public void entrar(View view) {
+    public void entrar(View view) throws IOException {
         usuario = editTextUsuario.getText().toString();
         contrasena = editTextContrasena.getText().toString();
         if (usuario.isEmpty() || contrasena.length() == 0) {
@@ -55,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("keyUsuario", llaveUsuario);
                 startActivity(intent);
             }
+
+            Toast.makeText(this, "Cargando...", Toast.LENGTH_SHORT).show();
+            editTextContrasena.setText("");
+            editTextUsuario.setText("");
 
         }
 

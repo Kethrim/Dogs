@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Feed extends AppCompatActivity {
 
@@ -20,7 +19,6 @@ public class Feed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        //Obtenemos la llave del usuario
         Bundle extras = getIntent().getExtras();
         if (extras != null)
             if (extras.getString("keyUsuario") != null) {
@@ -55,13 +53,13 @@ public class Feed extends AppCompatActivity {
 
         String[][] dos_mil_perros = api.feed(llaveUsuario);
         // Cambiar por 2000 perros
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             Perro perro = new Perro(dos_mil_perros[i][0],
                     dos_mil_perros[i][1],
                     Integer.parseInt(dos_mil_perros[i][2]),
                     Integer.parseInt(dos_mil_perros[i][3]));
 
-            api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
+//            api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
             perros.add(perro);
         }
         return perros;
