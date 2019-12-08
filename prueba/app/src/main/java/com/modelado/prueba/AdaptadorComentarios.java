@@ -16,23 +16,26 @@ public class AdaptadorComentarios extends RecyclerView.Adapter<AdaptadorComentar
     private LayoutInflater mInflater;
     private ArrayList<String> comentarios;
 
-    public AdaptadorComentarios(Context contexto, ArrayList<String> comentarios) {
-        this.mInflater = LayoutInflater.from(contexto);
+    /**
+     * Crea un adaptador para mostrar todos los comentarios
+     * @param comentarios
+     */
+    public AdaptadorComentarios( ArrayList<String> comentarios) {
         this.comentarios = comentarios;
-        System.out.println("En el adaptador la lista mide "+this.comentarios.size());
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull viewHolderComentarios holder, int position) {
-        holder.comentario.setText(this.comentarios.get(position));
     }
 
     @NonNull
     @Override
     public viewHolderComentarios onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.comentario_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comentario_item, parent, false);
         return new viewHolderComentarios(view);
 
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull viewHolderComentarios holder, int position) {
+        String dato = this.comentarios.get(position);
+        holder.comentario.setText(dato);
     }
 
     @Override

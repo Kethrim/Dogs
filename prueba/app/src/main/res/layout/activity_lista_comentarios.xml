@@ -93,64 +93,67 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyler_view"
-        android:layout_width="359dp"
-        android:layout_height="240dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        tools:ignore="MissingConstraints" />
 
-    <RelativeLayout
-        android:id="@+id/bottom"
-        android:layout_width="405dp"
-        android:layout_height="31dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:background="#fff"
 
-        android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+     <RelativeLayout
+         android:id="@+id/bottom"
+         android:layout_width="405dp"
+         android:layout_height="31dp"
+         android:layout_alignParentBottom="true"
+         android:layout_marginEnd="4dp"
+         android:layout_marginBottom="4dp"
+         android:background="#fff"
 
-        <EditText
-            android:id="@+id/nuevoComentario"
-            android:layout_width="297dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="35dp"
-            android:layout_toLeftOf="@+id/postea"
-            android:background="@android:color/transparent"
-            android:hint="Agrega un comentario" />
+         android:padding="4dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/postea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="28dp"
-            android:text="Comenta"
-            android:textColor="#E91E63" />
+         <EditText
+             android:id="@+id/nuevoComentario"
+             android:layout_width="297dp"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="10dp"
+             android:layout_marginEnd="10dp"
+             android:layout_marginRight="35dp"
+             android:layout_toLeftOf="@+id/postea"
+             android:background="@android:color/transparent"
+             android:hint="Agrega un comentario" />
 
-    </RelativeLayout>
+         <TextView
+             android:id="@+id/postea"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentEnd="true"
+             android:layout_marginEnd="28dp"
+             android:text="Comenta"
+             android:textColor="#E91E63" />
 
-    <TextView
-        android:id="@+id/Comentarios"
-        android:layout_width="393dp"
-        android:layout_height="24dp"
-        android:text="Comentarios"
-        android:textAlignment="viewStart"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyler_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+     </RelativeLayout>
+
+     <TextView
+         android:id="@+id/Comentarios"
+         android:layout_width="393dp"
+         android:layout_height="24dp"
+         android:text="Comentarios"
+         android:textAlignment="viewStart"
+         android:textColor="#000000"
+         android:textSize="16sp"
+         app:layout_constraintBottom_toTopOf="@+id/recyler_view"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

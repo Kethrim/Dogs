@@ -2,7 +2,6 @@ package com.modelado.prueba;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,27 +61,20 @@ public class ListaComentarios extends AppCompatActivity {
         llaveUsuario = intent.getStringExtra("llaveUsuario");
         idPerro = intent.getStringExtra("idPerro");
 
+
         //Definimos la vista para la lista de comentarios.
         recyclerView = findViewById(R.id.recyler_view);
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         recyclerView.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                linearLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
         comentarios = new ArrayList<>();
-//        List<String> listaDeComentarios = Arrays.asList(api.perroComentarios(llaveUsuario, idPerro));
-//        comentarios.addAll(listaDeComentarios);
+        List<String> listaDeComentarios = Arrays.asList(api.perroComentarios(llaveUsuario, idPerro));
+        comentarios.addAll(listaDeComentarios);
 
-        comentarios.add("Hola perrito");
-        comentarios.add("jjbdkcjbsdk");
-        comentarios.add("Jejjdbk");
-        comentarios.add("Chulis bonis");
-        comentarios.add("El Mike");
-        adaptadorComentarios = new AdaptadorComentarios(this, comentarios);
+        adaptadorComentarios = new AdaptadorComentarios(comentarios);
         recyclerView.setAdapter(adaptadorComentarios);
-
 
         imagenPerroDetalles = findViewById(R.id.imagenPerroDetalles);
         nombrePerroDetalles = findViewById(R.id.nombrePerroDetalles);
@@ -100,6 +92,7 @@ public class ListaComentarios extends AppCompatActivity {
         postea = findViewById(R.id.postea);
         nuevoComentario = findViewById(R.id.nuevoComentario);
 
+        //Añade un cmentario
         postea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,23 +110,14 @@ public class ListaComentarios extends AppCompatActivity {
      * Añade un comentario a la api.
      */
     private void anadeComentario(){
+        //Añade el comentario a la api
         api.comentar(llaveUsuario, idPerro, nuevoComentario.getText().toString());
-//        System.out.println("El tamaño de la lista que crereamos (ANTES) es: "+api.perroComentarios(llaveUsuario, idPerro).length);
-//        System.out.println("Añadimos "+nuevoComentario.getText().toString());
-//        System.out.println("El tamaño de la lista que creamos (DESPUÉS)es: "+api.perroComentarios(llaveUsuario, idPerro).length);
-        System.out.println(Arrays.toString(api.perroComentarios(llaveUsuario, idPerro)));
-
         nuevoComentario.setText("");
 
-
         comentarios.clear();
+        // Carga la nueva lista de comentarios.
         List<String> listaDeComentarios = Arrays.asList(api.perroComentarios(llaveUsuario, idPerro));
-
-        for( String s: listaDeComentarios)
-            System.out.println("Lista: "+s);
-
         comentarios.addAll(listaDeComentarios);
-        System.out.println("El tamaño de la lista es: "+comentarios.size());
         adaptadorComentarios.notifyDataSetChanged();
 
     }
