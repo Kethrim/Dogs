@@ -19,17 +19,14 @@ public class Feed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
+        // Obtenemos la llave del usuario
         Bundle extras = getIntent().getExtras();
         if (extras != null)
             if (extras.getString("keyUsuario") != null) {
                 llaveUsuario = extras.getString("keyUsuario");
             } else {
-                System.out.println("\t\t\tLa llave del usuario es nula, hubo error al pasarla");
+                System.out.println("La llave del usuario es nula, hubo error al pasarla");
             }
-
-
-        // Cargamos el feed si y solo si es la primera vez
-//        if (extras != null)
 
         llenaFeed();
 
@@ -38,7 +35,6 @@ public class Feed extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-//        if (extras != null)
         contenedor.setAdapter(new AdaptadorFeed(perros, llaveUsuario));
         contenedor.setLayoutManager(layoutManager);
 
@@ -52,14 +48,12 @@ public class Feed extends AppCompatActivity {
         perros = new ArrayList<>();
 
         String[][] dos_mil_perros = api.feed(llaveUsuario);
-        // Cambiar por 2000 perros
-        for (int i = 0; i < 20; i++) {
+        // Cambiar por 2000 perros si se desea probar
+        for (int i = 0; i < 100; i++) {
             Perro perro = new Perro(dos_mil_perros[i][0],
                     dos_mil_perros[i][1],
                     Integer.parseInt(dos_mil_perros[i][2]),
                     Integer.parseInt(dos_mil_perros[i][3]));
-
-//            api.comentar(llaveUsuario, dos_mil_perros[i][3], "Hola perrito" + i);
             perros.add(perro);
         }
         return perros;
